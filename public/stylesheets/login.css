@@ -1,0 +1,27 @@
+.header-img{
+  width: 375px;
+}
+.login-layout{
+  background: url("../images/bg.jpeg") no-repeat center center fixed;
+  background-size: 100%;
+}
+
+.login-layout .widget-box{
+  width: 400px;
+  background-color: #ffffff;
+  margin-top: 160px;
+}
+.login-layout .widget-box .widget-main{
+  background-color: #ffffff;
+}
+.login-box .toolbar {
+  background: #ffffff;
+  border-top: none;
+}
+.widget-body{
+  margin-top: -20px;
+}
+
+.login-container select{
+  height: 34px;
+}

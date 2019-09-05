@@ -1,0 +1,38 @@
+{
+  "StoreService": {
+    "host": "localhost",
+    "port": 8080,
+    "path": {
+      "advertise": "/api/advertise",
+      "module": "/api/module",
+      "moduleExist": "/api/module/exist",
+      "block": "/api/block",
+      "blockExist": "/api/block/exist",
+      "blockOfModule": "/api/block/module",
+      "item": "/api/item",
+      "moveItem": "/api/item/move",
+      "itemExist": "/api/item/exist",
+      "itemOfBlock": "/api/item/block",
+      "detail": "/api/detail",
+      "detail4Item": "/api/detail/item",
+      "reverseSequence": "/api/detail/reverseSequence",
+      "detail4ImageMemo": "/api/detail/imageMemo",
+      "deleteDetailImage": "/api/detail/deleteImage",
+      "deleteDetailOfItem": "/api/detail/deleteOfItem",
+      "saveDetailItem": "/api/detailItem",
+      "news": "/api/news",
+      "user": "/api/user",
+      "userCellphone": "/api/user/cellphone",
+      "changePassword": "/api/user/changePassword",
+      "login": "/api/system/account/login",
+      "authorizedSystem": "/api/system/account/authorizedSystem",
+      "sysName": "/api/systemName",
+      "logo": "/api/logo",
+      "logo4Branch": "/api/logo/branch",
+      "distribute": "/api/business",
+      "analyse4financial": "/api/analyse/financial",
+      "analyse4lobby": "/api/analyse/lobby",
+      "changeNodeOrder": "/api/item/changeNodeOrder"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="/stylesheets/detail.css" />
+<link rel="stylesheet" href="/stylesheets/selectric/selectric.css" />
+
+<div class="breadcrumbs" id="breadcrumbs">
+  <ul class="breadcrumb">
+    <li>
+      <i class="icon-home home-icon"></i>
+      <a href="/index">主页</a>
+    </li>
+    <li>
+      <a href="#">服务档案信息管理</a>
+    </li>
+    <li class="active">考评内容管理</li>
+  </ul>
+</div>
+
+<div class="page-content">
+  <div class="page-header">
+    <h1>
+    </h1>
+  </div>
+  <div class="row" id="app">
+    <div class="col-xs-12">
+      <div class="detail-info"></div>
+    </div>
+  </div>
+</div>
+<input type="hidden" value="{{itemID}}" id="hidden-itemID">
+<input type="hidden" value="{{year}}" id="hidden-year">
+<input type="hidden" value="{{quarter}}" id="hidden-quarter">
+<input type="hidden" value="{{breadcrumbs}}" id="hidden-breadcrumbs">
+<script src="/javascripts/selectric/jquery.selectric.js"></script>
+<script src="/javascripts/view/detailView.js"></script>
