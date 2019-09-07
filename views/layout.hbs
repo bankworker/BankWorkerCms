@@ -13,10 +13,12 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/jquery-upload/jquery.filer-dragdropbox-theme.css">
     <link rel="stylesheet" type="text/css" href="/stylesheets/jquery-upload/tomorrow.css">
     <link rel="stylesheet" type="text/css" href="/stylesheets/jquery-upload/custom.css">
-    <link rel='stylesheet' type="text/css" href='/stylesheets/johnny-component/alert-message.css' />
+    <link rel="stylesheet" href="/stylesheets/fileUpload/iconfont.css" />
+    <link rel="stylesheet" href="/stylesheets/fileUpload/fileUpload.css">
     <link rel='stylesheet' type="text/css" href='/stylesheets/style.css' />
     <script src="/javascripts/jquery-2.2.0/jquery-2.2.0.min.js"></script>
-    <script src="/javascripts/vuejs/vue.js"></script>
+<!--    <script src="/javascripts/vuejs/vue.js"></script>-->
+    <script src="/javascripts/angular-1.7.8/angular.min.js"></script>
     <script src="/javascripts/layer/layer.js"></script>
     <script src="/javascripts/bootstrap-3.3.7/bootstrap.min.js"></script>
     <script src="/javascripts/ace/ace-extra.min.js"></script>
@@ -28,7 +30,8 @@
     <script src="/javascripts/jquery-upload/jquery.filer.min.js" type="text/javascript"></script>
     <script src="/javascripts/jquery-upload/prettify.js" type="text/javascript"></script>
     <script src="/javascripts/jquery-upload/custom.js" type="text/javascript"></script>
-    <script src="/javascripts/johnny-component/alert-message.js" type="text/javascript"></script>
+    <script src="/javascripts/fileUpload/fileUpload.js"></script>
+    <script src="/javascripts/view/uploadutils.js"></script>
     <script src="/javascripts/view/common.js"></script>
   </head>
   <body>
@@ -138,12 +141,6 @@
                 <b class="arrow icon-angle-down"></b>
               </a>
               <ul class="submenu">
-<!--                <li>-->
-<!--                  <a href="/sysName">-->
-<!--                    <i class="icon-double-angle-right"></i>-->
-<!--                    系统名称管理-->
-<!--                  </a>-->
-<!--                </li>-->
                 <li>
                   <a href="/logo">
                     <i class="icon-double-angle-right"></i>
@@ -171,7 +168,7 @@
               </ul>
             </li>
 
-            <li data-system-id="1" class="hide">
+            <li data-system-id="1" class="hide system-fun">
               <a href="#" class="dropdown-toggle">
                 <i class="icon-book"></i>
                 <span class="menu-text"> 服务档案信息管理 </span>
@@ -186,7 +183,7 @@
                 </li>
               </ul>
             </li>
-            <li data-system-id="2" class="hide">
+            <li data-system-id="2" class="hide system-fun">
               <a href="#" class="dropdown-toggle">
                 <i class="icon-coffee"></i>
                 <span class="menu-text"> 理财业务分流管理 </span>
@@ -201,7 +198,7 @@
                 </li>
               </ul>
             </li>
-            <li data-system-id="3" class="hide">
+            <li data-system-id="3" class="hide system-fun">
               <a href="#" class="dropdown-toggle">
                 <i class="icon-desktop"></i>
                 <span class="menu-text"> 大屏媒体信息管理 </span>

@@ -23,7 +23,9 @@ app.controller('myCtrl', function ($scope, $http) {
       }
       //记录Cookie
       setCookie('secmsUser', JSON.stringify(response.data.userInfo));
-      setCookie('secmsUserID', JSON.stringify(response.data.userInfo.accountID));
+      setCookie('secmsUserID', response.data.userInfo.accountID);
+      setCookie('secmsBankCode', response.data.userInfo.bankCode);
+      setCookie('secmsBranchCode', response.data.userInfo.branchCode);
       location.href = '/index';
     }, function errorCallback(response) {
       bootbox.alert('网络异常，请检查网络设置');

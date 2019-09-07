@@ -9,6 +9,9 @@ $(document).ready(function () {
 
 function setAuthorizedSystem() {
   let accountID = getLoginUserInfo().accountID;
+  if(accountID === undefined){
+    return false;
+  }
   $.ajax({
     url: '/user/authorizedSystem?accountID=' + accountID,
     type: 'get',
@@ -22,12 +25,26 @@ function setAuthorizedSystem() {
         return false;
       }
 
-      $.each(res.dataList, function (index, data) {
-        let nav = $('ul.nav-list li[data-system-id="' + data.systemID + '"]');
-        if(nav.length > 0){
-          $(nav).removeClass('hide');
+      let noAuthorizedNav = [];
+      $.each($('ul.nav-list li.system-fun'), function (index, li) {
+        let hasAuthorized = false;
+        let systemID = $(li).attr('data-system-id');
+        $.each(res.dataList, function (index, data) {
+          if(parseInt(systemID) === data.systemID){
+            hasAuthorized = true;
+            $(li).removeClass('hide');
+          }
+        });
+        if(!hasAuthorized){
+          noAuthorizedNav.push(li);
         }
       });
+
+      $.each(noAuthorizedNav, function (index, nav) {
+        $(nav).remove();
+      });
+
+
     },
     error: function(XMLHttpRequest){
       bootbox.alert('无法连接远程服务器，请检查网络状态。');
@@ -98,6 +115,8 @@ function addCommonEvent() {
   $('li.logout').click(function () {
     delCookie('secmsUser');
     delCookie('secmsUserID');
+    delCookie('secmsBankCode');
+    delCookie('secmsBranchCode');
     location.href = '/';
   });
 }
@@ -123,7 +142,7 @@ function getLoginUser() {
   var cookie = getCookie('secmsUser');
   if(cookie !== null){
     var loginUser = JSON.parse(cookie);
-    return loginUser.cellphone;
+    return loginUser.account;
   }
 
   return 'unknown';
