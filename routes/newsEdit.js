@@ -1,22 +1,17 @@
 let express = require('express');
-let path = require('path');
 let fs = require("fs");
-let multer = require('multer');
 let uploadUtils = require('../common/uploadUtils');
-let sysConfig = require('../config/sysConfig');
 let commonService = require('../service/commonService');
 let router = express.Router();
-
-
-let upload = uploadUtils.createUploadObject(['public','images','news']);
+let upload = uploadUtils.createUploadObject(['public','upload','branch']);
+let dateUtils = require('../common/DateUtils');
 
 router.get('/', function(req, res, next) {
   let newsID = req.query.newsID;
-  let saveType = req.query.saveType;
-  res.render('editNews', {title: '新闻编辑', newsID: newsID, saveType: saveType});
+  res.render('newsEdit', {title: '新闻编辑', newsID: newsID});
 });
 
-router.get('/updNews', function(req, res, next) {
+router.get('/detail', function(req, res, next) {
   let service = new commonService.commonInvoke('news');
   let parameter = req.query.newsID;
 
@@ -30,7 +25,7 @@ router.get('/updNews', function(req, res, next) {
       res.json({
         err: !result.content.result,
         msg: result.content.responseMessage,
-        data: result.content.responseData
+        newsInfo: result.content.responseData
       });
     }
   })
@@ -58,13 +53,12 @@ router.delete('/deleteFile', function (req, res, next) {
 router.post('/', function (req, res, next) {
   let service = new commonService.commonInvoke('news');
   let data = {
-    bankID: sysConfig.bankID,
-    branchID: sysConfig.branchID,
+    bankCode: req.cookies.secmsBankCode,
+    branchCode: req.cookies.secmsBranchCode,
     newsTitle: req.body.newsTitle,
-    newsDate: req.body.newsDate,
+    newsDate: dateUtils.formatUTC(req.body.newsDate),
     thumbnailUrl: req.body.thumbnailUrl,
-    status: 'A',
-    newsContentJson: req.body.newsContentJson,
+    newsContent: req.body.newsContent,
     loginUser: req.body.loginUser
   };
 
@@ -86,14 +80,13 @@ router.post('/', function (req, res, next) {
 router.put('/', function (req, res, next) {
   let service = new commonService.commonInvoke('news');
   let data = {
-    bankID: sysConfig.bankID,
-    branchID: sysConfig.branchID,
     newsID: req.body.newsID,
+    bankCode: req.cookies.secmsBankCode,
+    branchCode: req.cookies.secmsBranchCode,
     newsTitle: req.body.newsTitle,
-    newsDate: req.body.newsDate,
+    newsDate: dateUtils.formatUTC(req.body.newsDate),
     thumbnailUrl: req.body.thumbnailUrl,
-    status: 'A',
-    newsContentJson: req.body.newsContentJson,
+    newsContent: req.body.newsContent,
     loginUser: req.body.loginUser
   };
 
@@ -115,12 +108,12 @@ router.put('/', function (req, res, next) {
 router.post('/fileUpload',  upload.array('file', 10), function(req,res,next){
   let uploadImageUrlArray = [];
   req.files.forEach(function (file, index) {
-    uploadImageUrlArray.push('http://' + req.headers.host + '/images/news/' + file.originalname)
+    uploadImageUrlArray.push('http://' + req.headers.host + '/upload/branch/' + req.cookies.secmsBranchCode + '/' + file.originalname)
   });
   //将其发回客户端
   res.json({
     err : false,
-    imageUrl : uploadImageUrlArray
+    fileUrl : uploadImageUrlArray
   });
   res.end();
 });

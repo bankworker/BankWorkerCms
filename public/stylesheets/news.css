@@ -1,5 +1,5 @@
 #data-list tbody img{
-  width: 45px;
+  width: 105px;
 }
 .btn-bar{
   padding: 15px;
@@ -45,7 +45,6 @@
   border: 1px solid silver;
 }
 .detail{
-  width: 700px;
   margin-top: 5px;
   text-align: center;
 }

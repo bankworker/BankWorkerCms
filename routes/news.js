@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
   if(pageNumber === undefined){
     pageNumber = 1;
   }
-  let parameter = '/' + pageNumber + '/' + sysConfig.pageSize + '/' + sysConfig.bankID + '/' + sysConfig.branchID;
+  let parameter = '/' + pageNumber + '/' + sysConfig.pageSize + '/' + req.cookies.secmsBankCode + '/' + req.cookies.secmsBranchCode;
 
   service.get(parameter, function (result) {
     let renderData = commonService.buildRenderData('营业网点新闻管理', pageNumber, result);

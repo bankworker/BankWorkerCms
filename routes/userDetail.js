@@ -2,13 +2,13 @@ let express = require('express');
 let uploadUtils = require('../common/uploadUtils');
 let router = express.Router();
 
-let uploadPhoto = uploadUtils.createUploadObject(['public', 'images', 'user']);
-let uploadResume = uploadUtils.createUploadObject(['public', 'images', 'resume']);
+let uploadPhoto = uploadUtils.createUploadObject(['public', 'upload', 'branch']);
+let uploadResume = uploadUtils.createUploadObject(['public', 'upload', 'branch']);
 
 router.post('/photoUpload',  uploadPhoto.array('file', 10), function(req,res,next){
   let uploadFileUrlArray = [];
   req.files.forEach(function (file, index) {
-    uploadFileUrlArray.push('http://' + req.headers.host + '/images/user/' + file.originalname)
+    uploadFileUrlArray.push('http://' + req.headers.host + '/upload/branch/' + req.cookies.secmsBranchCode + '/' + file.originalname)
   });
   //将其发回客户端
   res.json({
@@ -21,7 +21,7 @@ router.post('/photoUpload',  uploadPhoto.array('file', 10), function(req,res,nex
 router.post('/resumeUpload',  uploadResume.array('file', 10), function(req,res,next){
   let uploadFileUrlArray = [];
   req.files.forEach(function (file, index) {
-    uploadFileUrlArray.push('http://' + req.headers.host + '/images/resume/' + file.originalname)
+    uploadFileUrlArray.push('http://' + req.headers.host + '/upload/branch/' + req.cookies.secmsBranchCode + '/' + file.originalname)
   });
   //将其发回客户端
   res.json({

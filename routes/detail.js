@@ -34,7 +34,7 @@ let upload = multer({storage: storage});
 router.post('/fileUpload',  upload.array('file', 10), function(req,res,next){
   let uploadImageUrlArray = [];
   req.files.forEach(function (file, index) {
-    uploadImageUrlArray.push('http://' + req.headers.host + '/images/upload/' + file.originalname)
+    uploadImageUrlArray.push('http://' + req.headers.host + '/upload/branch/' + req.cookies.secmsBranchCode + '/' + file.originalname)
   });
   //将其发回客户端
   res.json({

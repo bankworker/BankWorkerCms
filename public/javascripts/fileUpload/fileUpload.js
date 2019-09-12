@@ -47,7 +47,7 @@ var uploadTools = {
       "autoCommit":false,//是否自动上传
       "isHiddenUploadBt":false,//是否隐藏上传按钮
       "isHiddenCleanBt":false,//是否隐藏清除按钮
-      "isAutoClean":false,//是否上传完成后自动清除
+      "isAutoClean":true,//是否上传完成后自动清除
       "canDrag":true,//是否可以拖动
       "velocity":10,
       "fileType":"*",//文件类型
