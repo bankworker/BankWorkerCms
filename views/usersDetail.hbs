@@ -1,0 +1,133 @@
+<link rel="stylesheet" href="/stylesheets/fileUpload/iconfont.css" />
+<link rel="stylesheet" href="/stylesheets/fileUpload/fileUpload.css">
+
+<div class="breadcrumbs" id="breadcrumbs">
+  <ul class="breadcrumb">
+    <li>
+      <i class="icon-home home-icon"></i>
+      <a href="/index">主页</a>
+    </li>
+    <li>
+      <a href="#">营业网点信息管理</a>
+    </li>
+    <li class="active">员工账户编辑</li>
+  </ul>
+</div>
+
+<div class="page-content" ng-app="myApp" ng-controller="myCtrl">
+  <div class="page-header">
+    <h1>
+      营业网点信息管理
+      <small>
+        <i class="icon-double-angle-right"></i>
+        员工账户编辑
+      </small>
+    </h1>
+  </div>
+  <div class="row">
+    <form class="form-horizontal" name="myForm" novalidate>
+      <div class="col-md-12">
+        <div class="row option-bar">
+          <div class="col-xs-12">
+            <a href="/users" class="btn btn-default"><i class="icon-reply"></i>返回</a>
+            <button type="button" class="btn btn-info" ng-click="onShowUploadResumeDialog()"><i class="icon-picture"></i>上传履历</button>
+            <button type="button" class="btn btn-primary" ng-click="onSave()" ng-disabled="(myForm.staffName.$pristine && model.add) ||
+                                                                                          (myForm.staffName.$dirty && myForm.staffName.$invalid) ||
+                                                                                          (myForm.staffCellphone.$pristine && model.add) ||
+                                                                                          (myForm.staffCellphone.$dirty && myForm.staffCellphone.$invalid) ||
+                                                                                          model.selectedStaffPost.staffPostID == 0 ||
+                                                                                          model.isCellphoneValid == false ||
+                                                                                          model.staffPhotoUrl == '/images/userPhoto.png' ||
+                                                                                          model.staffResumeUrl == '/images/timg.jpeg'">
+              <i class="icon-save"></i>
+              提交
+            </button>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top: 15px">
+          <div class="col-md-2">
+            <div class="user-photo">
+              <img ng-src="\{{model.staffPhotoUrl}}" alt="">
+              <button type="button" class="btn btn-purple btn-block" style="margin-top: 15px" ng-click="onShowUploadPhotoDialog()">上传头像</button>
+            </div>
+          </div>
+          <div class="col-md-10">
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">员工姓名</label>
+              <div class="col-sm-6">
+                <input type="text" name="staffName" class="form-control" maxlength="15" ng-model="model.staffName" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">手机号码</label>
+              <div class="col-sm-6">
+                <input type="text" name="staffCellphone" class="form-control" maxlength="11" ng-model="model.staffCellphone" ng-blur="onCellphoneBlur()" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">员工岗位</label>
+              <div class="col-sm-6">
+                <select class="form-control" ng-model="model.selectedStaffPost" ng-options="staffPost as staffPost.staffPostName for staffPost in model.staffPostList"></select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">员工履历</label>
+              <div class="col-sm-6">
+                <img ng-src="\{{model.staffResumeUrl}}" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" tabindex="-1" role="dialog" id="photo-upload-modal">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">上传图片（*.jpg, *.jpeg, *.png）请上传1:1尺寸的图片</h4>
+              </div>
+              <div class="alert alert-danger store-alert hidden">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <span></span>
+              </div>
+              <div class="modal-body">
+                <div id="file-upload-image" class="fileUploadContent"></div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div>
+
+        <div class="modal fade" tabindex="-1" role="dialog" id="resume-upload-modal">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">上传图片（*.jpg, *.jpeg, *.png）486*650尺寸的图片</h4>
+              </div>
+              <div class="alert alert-danger store-alert hidden">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <span></span>
+              </div>
+              <div class="modal-body">
+                <div id="file-upload-resume" class="fileUploadContent"></div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
+
+<input type="hidden" value="{{option}}" id="hidden_option">
+<input type="hidden" value="{{staffID}}" id="hidden_staffID">
+<script src="/javascripts/fileUpload/fileUpload.js"></script>
+<script src="/javascripts/view/usersDetail.js"></script>

@@ -29,6 +29,9 @@
       "sysName": "/api/systemName",
       "logo": "/api/logo",
       "branchInfo": "/api/bank/branch/code",
+      "branchStaff": "/api/bank/branch/staff",
+      "checkBranchStaffCellphone": "/api/bank/branch/staff/exist",
+
       "changeLogo": "/api/bank/branch/changeLogo",
       "distribute": "/api/business",
       "analyse4financial": "/api/analyse/financial",

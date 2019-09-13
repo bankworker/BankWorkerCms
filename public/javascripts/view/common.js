@@ -13,7 +13,7 @@ function setAuthorizedSystem() {
     return false;
   }
   $.ajax({
-    url: '/user/authorizedSystem?accountID=' + accountID,
+    url: '/users/authorizedSystem?accountID=' + accountID,
     type: 'get',
     success: function(res){
       if(res.err){
@@ -70,8 +70,8 @@ function setActiveNav() {
     pathname = '/advertise';
   }
 
-  if(pathname.indexOf('user') >= 0){
-    pathname = '/user';
+  if(pathname.indexOf('users') >= 0){
+    pathname = '/users';
   }
 
   if((pathname.indexOf('item') >= 0 && pathname.indexOf('itemBatch') === -1)

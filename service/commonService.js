@@ -8,8 +8,8 @@ exports.commonInvoke = function(apiName) {
   this.host = apiConfig.StoreService.host;
   this.port = apiConfig.StoreService.port;
   this.path = apiConfig.StoreService.path[apiName];
-  this.getPageData = function (pageNumber, callback) {
-    serviceInvoke.get(this.host, this.port, this.path + '/' + pageNumber + '/' + this.pageSize, callback)
+  this.getPageData = function (pageNumber, bankCode, branchCode, callback) {
+    serviceInvoke.get(this.host, this.port, this.path + '/' + pageNumber + '/' + this.pageSize + '/' + bankCode + '/' + branchCode, callback)
   };
   this.getAll = function (callback) {
     serviceInvoke.get(this.host, this.port, this.path + '/' + 1 + '/' + 9999, callback)
