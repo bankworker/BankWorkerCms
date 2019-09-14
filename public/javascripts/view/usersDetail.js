@@ -11,6 +11,7 @@ app.controller('myCtrl', function ($scope, $http) {
     staffPhotoUrl: '/images/userPhoto.png',
     staffResumeUrl: '/images/timg.jpeg',
     isCellphoneValid: false,
+    isShowCellphoneExistMessage: false,
     add: true
   };
 
@@ -20,39 +21,31 @@ app.controller('myCtrl', function ($scope, $http) {
   };
 
   $scope.loadStaffPost = function() {
-    $scope.model.staffPostList.push({staffPostID: 1, staffPostName: '大堂经理'});
-    $scope.model.staffPostList.push({staffPostID: 2, staffPostName: '理财经理'});
-    $scope.model.selectedStaffPost = $scope.model.staffPostList[0];
-
-
-    angular.forEach($scope.model.staffPostList, function (staffPost) {
-      if(staffPost.staffPostID === $scope.model.staffPostID){
-        $scope.model.selectedStaffPost = staffPost;
+    $http.get('/users/edit/staffPost').then(function successCallback (response) {
+      if(response.data.err){
+        bootbox.alert(response.data.msg);
+        return false;
       }
-    });
+      if(response.data.staffPostList === null){
+        $scope.model.selectedStaffPost = $scope.model.staffPostList[0];
+        return false;
+      }
 
-    // $http.get('/common/system').then(function successCallback (response) {
-    //   if(response.data.err){
-    //     bootbox.alert(response.data.msg);
-    //     return false;
-    //   }
-    //   if(response.data.systemList === null){
-    //     return false;
-    //   }
-    //   angular.forEach(response.data.systemList, function (system) {
-    //     $scope.model.systemList.push({
-    //       systemID: system.systemID,
-    //       systemName: system.systemName
-    //     });
-    //   });
-    //   angular.forEach($scope.model.systemList, function (system) {
-    //     if(system.systemID === $scope.model.systemID){
-    //       $scope.model.selectedSystem = system;
-    //     }
-    //   });
-    // }, function errorCallback(response) {
-    //   bootbox.alert('网络异常，请检查网络设置');
-    // });
+      angular.forEach(response.data.staffPostList, function (staffPost) {
+        $scope.model.staffPostList.push({
+          staffPostID: staffPost.staffPostID,
+          staffPostName: staffPost.staffPostName
+        });
+      });
+
+      angular.forEach($scope.model.staffPostList, function (staffPost) {
+        if(staffPost.staffPostID === $scope.model.staffPostID){
+          $scope.model.selectedStaffPost = staffPost;
+        }
+      });
+    }, function errorCallback(response) {
+      bootbox.alert('网络异常，请检查网络设置');
+    });
   };
 
   $scope.initUploadPlugins = function(){
@@ -93,10 +86,7 @@ app.controller('myCtrl', function ($scope, $http) {
       }
 
       $scope.model.isCellphoneValid = response.data.result === 0;
-      if(!$scope.model.isCellphoneValid){
-        bootbox.alert('该手机号码已存在，请输入其他手机号码。');
-      }
-
+      $scope.model.isShowCellphoneExistMessage = response.data.result > 0;
     }, function errorCallback(response) {
       bootbox.alert('网络异常，请检查网络设置');
     });

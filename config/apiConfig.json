@@ -31,6 +31,9 @@
       "branchInfo": "/api/bank/branch/code",
       "branchStaff": "/api/bank/branch/staff",
       "checkBranchStaffCellphone": "/api/bank/branch/staff/exist",
+      "staffPost": "/api/bank/branch/staffPost",
+      "checkStaffPostName": "/api/bank/branch/staffPost/exist",
+      "checkStaffPostIsUsing": "/api/bank/branch/staffPost/isUsing",
 
       "changeLogo": "/api/bank/branch/changeLogo",
       "distribute": "/api/business",

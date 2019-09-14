@@ -5,24 +5,26 @@ let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 
-const login = require('./routes/login');
-const index = require('./routes/index');
-const examineModule = require('./routes/module');
-const block = require('./routes/block');
-const item = require('./routes/item');
-const detail = require('./routes/detail');
-const detailView = require('./routes/detailView');
-const logo = require('./routes/logo');
-const sysName = require('./routes/sysName');
-const news = require('./routes/news');
-const newsEdit = require('./routes/newsEdit');
-const users = require('./routes/users');
-const usersDetail = require('./routes/usersDetail');
-const changePassword = require('./routes/changePassword');
-const advertise = require('./routes/advertise');
-const advertiseDetail = require('./routes/advertiseDetail');
-const distribute = require('./routes/distribute');
-const analyse = require('./routes/analyse');
+const loginRouter = require('./routes/login');
+const indexRouter = require('./routes/index');
+const examineModuleRouter = require('./routes/module');
+const blockRouter = require('./routes/block');
+const itemRouter = require('./routes/item');
+const detailRouter = require('./routes/detail');
+const detailViewRouter = require('./routes/detailView');
+const logoRouter = require('./routes/logo');
+const newsRouter = require('./routes/news');
+const newsEditRouter = require('./routes/newsEdit');
+
+const staffPostRouter = require('./routes/staffPost');
+
+const usersRouter = require('./routes/users');
+const usersDetailRouter = require('./routes/usersDetail');
+const changePasswordRouter = require('./routes/changePassword');
+const advertiseRouter = require('./routes/advertise');
+const advertiseDetailRouter = require('./routes/advertiseDetail');
+const distributeRouter = require('./routes/distribute');
+const analyseRouter = require('./routes/analyse');
 let app = express();
 
 // view engine setup
@@ -46,25 +48,24 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use('/', login);
-app.use('/index', index);
-app.use('/index', index);
-app.use('/module', examineModule);
-app.use('/block', block);
-app.use('/item', item);
-app.use('/detail', detail);
-app.use('/detailView', detailView);
-app.use('/sysName', sysName);
-app.use('/logo', logo);
-app.use('/news', news);
-app.use('/news/edit', newsEdit);
-app.use('/users', users);
-app.use('/users/edit', usersDetail);
-app.use('/changePassword', changePassword);
-app.use('/advertise', advertise);
-app.use('/advertiseDetail', advertiseDetail);
-app.use('/distribute', distribute);
-app.use('/analyse', analyse);
+app.use('/', loginRouter);
+app.use('/index', indexRouter);
+app.use('/module', examineModuleRouter);
+app.use('/block', blockRouter);
+app.use('/item', itemRouter);
+app.use('/detail', detailRouter);
+app.use('/detailView', detailViewRouter);
+app.use('/logo', logoRouter);
+app.use('/news', newsRouter);
+app.use('/news/edit', newsEditRouter);
+app.use('/users', usersRouter);
+app.use('/users/edit', usersDetailRouter);
+app.use('/staffPost', staffPostRouter);
+app.use('/changePassword', changePasswordRouter);
+app.use('/advertise', advertiseRouter);
+app.use('/advertiseDetail', advertiseDetailRouter);
+app.use('/distribute', distributeRouter);
+app.use('/analyse', analyseRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

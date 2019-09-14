@@ -30,6 +30,26 @@ router.get('/detail', function(req, res, next) {
   });
 });
 
+router.get('/staffPost', function(req, res, next) {
+  let service = new commonService.commonInvoke('staffPost');
+  let parameter = '/1/9999/' + req.cookies.secmsBankCode + '/' + req.cookies.secmsBranchCode;
+
+  service.get(parameter, function (result) {
+    if(result.err){
+      res.json({
+        err: true,
+        msg: result.msg
+      });
+    }else{
+      res.json({
+        err: !result.content.result,
+        msg: result.content.responseMessage,
+        staffPostList: result.content.responseData
+      });
+    }
+  });
+});
+
 router.get('/cellphone', function(req, res, next) {
   let service = new commonService.commonInvoke('checkBranchStaffCellphone');
   let cellphone = req.query.cellphone;
