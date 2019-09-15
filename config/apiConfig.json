@@ -28,6 +28,7 @@
       "authorizedSystem": "/api/system/account/authorizedSystem",
       "sysName": "/api/systemName",
       "logo": "/api/logo",
+      "branchResource": "/api/bank/branch/resource",
       "branchInfo": "/api/bank/branch/code",
       "branchStaff": "/api/bank/branch/staff",
       "checkBranchStaffCellphone": "/api/bank/branch/staff/exist",

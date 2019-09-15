@@ -13,11 +13,10 @@ const itemRouter = require('./routes/item');
 const detailRouter = require('./routes/detail');
 const detailViewRouter = require('./routes/detailView');
 const logoRouter = require('./routes/logo');
+const branchResourceRouter = require('./routes/branchResource');
 const newsRouter = require('./routes/news');
 const newsEditRouter = require('./routes/newsEdit');
-
 const staffPostRouter = require('./routes/staffPost');
-
 const usersRouter = require('./routes/users');
 const usersDetailRouter = require('./routes/usersDetail');
 const changePasswordRouter = require('./routes/changePassword');
@@ -56,6 +55,7 @@ app.use('/item', itemRouter);
 app.use('/detail', detailRouter);
 app.use('/detailView', detailViewRouter);
 app.use('/logo', logoRouter);
+app.use('/branchResource', branchResourceRouter);
 app.use('/news', newsRouter);
 app.use('/news/edit', newsEditRouter);
 app.use('/users', usersRouter);
