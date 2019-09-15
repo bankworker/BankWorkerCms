@@ -23,7 +23,7 @@
       "news": "/api/news",
       "user": "/api/user",
       "userCellphone": "/api/user/cellphone",
-      "changePassword": "/api/user/changePassword",
+      "changePassword": "/api/system/account/changePassword",
       "login": "/api/system/account/login",
       "authorizedSystem": "/api/system/account/authorizedSystem",
       "sysName": "/api/systemName",

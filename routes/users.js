@@ -39,31 +39,6 @@ router.get('/authorizedSystem', function(req, res, next) {
   });
 });
 
-router.put('/changePassword', function (req, res, next) {
-  let service = new commonService.commonInvoke('changePassword');
-  let data = {
-    bankID: sysConfig.bankID,
-    branchID: sysConfig.branchID,
-    userID: req.body.userID,
-    password: req.body.password,
-    loginUser: req.body.loginUser
-  };
-
-  service.change(data, function (result) {
-    if(result.err || !result.content.result){
-      res.json({
-        err: true,
-        msg: result.msg
-      });
-    }else{
-      res.json({
-        err: false,
-        msg: result.msg
-      });
-    }
-  })
-});
-
 router.delete('/', function (req, res, next) {
   let service = new commonService.commonInvoke('branchStaff');
   let staffID = req.query.staffID;

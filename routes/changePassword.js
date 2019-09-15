@@ -1,15 +1,17 @@
-var express = require('express');
-var router = express.Router();
-var commonService = require('../service/commonService');
+let express = require('express');
+let commonService = require('../service/commonService');
+let router = express.Router();
 
 router.get('/', function(req, res, next) {
-  res.render('changePassword', { title: '修改密码'});
+  res.render('changePassword', { title: '密码修改' });
 });
 
-router.get('/userInfo', function(req, res, next) {
-  let service = new commonService.commonInvoke('user');
-  service.get(req.query.userID, function (result) {
-    if(result.err || !result.content.result){
+router.get('/check', function (req, res, next) {
+  let service = new commonService.commonInvoke('login');
+  let param = req.query.cellphone + '/' + req.query.password;
+
+  service.get(param, function (result) {
+    if(result.err){
       res.json({
         err: true,
         msg: result.msg
@@ -18,16 +20,20 @@ router.get('/userInfo', function(req, res, next) {
       res.json({
         err: !result.content.result,
         msg: result.content.responseMessage,
-        userInfo: result.content.responseData
+        exist: result.content.responseData !== null
       });
     }
-  });
+  })
 });
 
 router.put('/', function (req, res, next) {
   let service = new commonService.commonInvoke('changePassword');
+
   let data = {
-    userID: req.body.userID,
+    accountID: req.body.accountID,
+    bankCode: req.cookies.secmsBankCode,
+    branchCode: req.cookies.secmsBranchCode,
+    systemID: '4',
     password: req.body.password,
     loginUser: req.body.loginUser
   };

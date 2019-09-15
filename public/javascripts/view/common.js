@@ -4,9 +4,18 @@ $(document).ready(function () {
   setPaginationStatus();
   addCommonEvent();
   showLoginUser();
+  setSystemTitle();
   setAuthorizedSystem();
 });
 
+function setSystemTitle() {
+  let cookie = getCookie('secmsUser');
+  if(cookie !== null){
+    let loginUser = JSON.parse(cookie);
+    let branchName = loginUser.branchName;
+    $('#branchName4System').text(branchName);
+  }
+}
 function setAuthorizedSystem() {
   let accountID = getLoginUserInfo().accountID;
   if(accountID === undefined){
