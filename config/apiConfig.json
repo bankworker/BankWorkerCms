@@ -37,6 +37,7 @@
       "checkStaffPostIsUsing": "/api/bank/branch/staffPost/isUsing",
 
       "changeLogo": "/api/bank/branch/changeLogo",
+      "changeBackImage": "/api/bank/branch/changeBackImage",
       "distribute": "/api/business",
       "analyse4financial": "/api/analyse/financial",
       "analyse4lobby": "/api/analyse/lobby",

@@ -13,6 +13,7 @@ const itemRouter = require('./routes/item');
 const detailRouter = require('./routes/detail');
 const detailViewRouter = require('./routes/detailView');
 const logoRouter = require('./routes/logo');
+const backImageRouter = require('./routes/backImage');
 const branchResourceRouter = require('./routes/branchResource');
 const newsRouter = require('./routes/news');
 const newsEditRouter = require('./routes/newsEdit');
@@ -24,6 +25,7 @@ const advertiseRouter = require('./routes/advertise');
 const advertiseDetailRouter = require('./routes/advertiseDetail');
 const distributeRouter = require('./routes/distribute');
 const analyseRouter = require('./routes/analyse');
+const commonRouter = require('./routes/common');
 let app = express();
 
 // view engine setup
@@ -55,6 +57,7 @@ app.use('/item', itemRouter);
 app.use('/detail', detailRouter);
 app.use('/detailView', detailViewRouter);
 app.use('/logo', logoRouter);
+app.use('/backImage', backImageRouter);
 app.use('/branchResource', branchResourceRouter);
 app.use('/news', newsRouter);
 app.use('/news/edit', newsEditRouter);
@@ -66,6 +69,7 @@ app.use('/advertise', advertiseRouter);
 app.use('/advertiseDetail', advertiseDetailRouter);
 app.use('/distribute', distributeRouter);
 app.use('/analyse', analyseRouter);
+app.use('/common', commonRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

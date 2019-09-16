@@ -1,5 +1,4 @@
-
-<link rel="stylesheet" href="/stylesheets/logo.css" />
+<link rel="stylesheet" href="/stylesheets/news.css" />
 <div class="breadcrumbs" id="breadcrumbs">
   <ul class="breadcrumb">
     <li>
@@ -9,43 +8,43 @@
     <li>
       <a href="#">营业网点信息管理</a>
     </li>
-    <li class="active">网点Logo管理</li>
+    <li class="active">系统背景设置</li>
   </ul>
 </div>
 
-<div class="page-content" ng-app="myApp" ng-controller="myCtrl">
+<div class="page-content">
   <div class="page-header">
     <h1>
-      网点Logo管理
+      营业网点信息管理
       <small>
         <i class="icon-double-angle-right"></i>
-        Logo维护
+        系统背景设置
       </small>
     </h1>
   </div>
 
-  <div class="row">
+  <div class="row" ng-app="myApp" ng-controller="myCtrl">
     <div class="col-xs-12">
       <div class="alert alert-warning alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>注意!</strong> 网点Logo图片的尺寸为：140 &times; 160
+        <strong>注意!</strong> 自定义背景图片的尺寸为：1920 &times; 1080
       </div>
       <div class="space-6"></div>
-        <form class="form-logo">
-          <div class="form-group">
-            <img ng-src="\{{model.bankBranchLogo}}" class="client-logo">
-          </div>
-          <button type="button" class="btn btn-pink btn-block" ng-click="onShowUploadLogo()">上传图片</button>
-        </form>
+      <button type="button" class="btn btn-primary" ng-click="onShowDialog()"><i class="icon-picture"></i>添加背景</button>
+      <div class="space-6"></div>
+      <div>
+        <img ng-src="\{{model.branchBackImage}}" class="client-logo">
+      </div>
+
     </div>
   </div>
 
-  <div class="modal fade" tabindex="-1" role="dialog" id="modal-system-logo">
+  <div class="modal fade" tabindex="-1" role="dialog" id="modal-back-image">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">上传图片（*.jpg, *.jpeg, *.png）</h4>
+          <h4 class="modal-title">上传资源（*.jpg, *.jpeg, *.png）</h4>
         </div>
         <div class="alert alert-danger store-alert hidden">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -60,5 +59,8 @@
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div>
+
 </div>
-<script src="/javascripts/view/logo.js"></script>
+
+<input type="hidden" value="{{currentPageNum}}" id="hidden-currentPageNum">
+<script src="/javascripts/view/backImage.js"></script>
