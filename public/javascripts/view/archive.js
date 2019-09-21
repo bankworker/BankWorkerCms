@@ -33,19 +33,19 @@ $(document).ready(function () {
     };
 
     $.ajax({
-      url: '/item/data',
+      url: '/archive/data',
       type: 'get',
       success: function(res){
         if(res.err){
           layer.msg(res.msg);
           return false;
         }
-        $.each(res.itemList, function (index, item) {
+        $.each(res.archiveList, function (index, archive) {
           data.files.push({
-            "id": item.itemID,
-            "pid": item.parentItemID,
-            "title": item.itemName,
-            "type": item.itemType
+            "id": archive.archiveID,
+            "pid": archive.archiveParentID,
+            "title": archive.archiveName,
+            "type": archive.archiveType
           })
         });
         let jtree = new Jtree(data, '#treeView');
@@ -198,7 +198,7 @@ $(document).ready(function () {
 
   function addNewItem(){
     $.ajax({
-      url: '/item',
+      url: '/archive',
       type: 'post',
       dataType: 'json',
       data:{
@@ -223,7 +223,7 @@ $(document).ready(function () {
 
   function changeItem(){
     $.ajax({
-      url: '/item',
+      url: '/archive',
       type: 'put',
       dataType: 'json',
       data:{
@@ -302,7 +302,7 @@ $(document).ready(function () {
       if(result) {
         _optionType = 'del';
         $.ajax({
-          url: '/item?itemID=' + _selectedNodeID + '&itemType=' + _selectedNodeType,
+          url: '/archive?itemID=' + _selectedNodeID + '&itemType=' + _selectedNodeType,
           type: 'delete',
           dataType: 'json',
           success: function(res){
@@ -446,7 +446,8 @@ $(document).ready(function () {
    */
   $('li.edit-detail').click(function () {
     let breadcrumbs = getBreadcrumbs4Add(_selectedNodeID, '');
-    window.open('/detail?itemID=' + _selectedNodeID + '&type=n' +  '&breadcrumbs=' + breadcrumbs);
+    // location.href = '/archiveDetail?archiveID=' + _selectedNodeID + '&archiveType=n' +  '&breadcrumbs=' + breadcrumbs;
+    window.open('/archiveDetail?archiveID=' + _selectedNodeID + '&archiveType=n' +  '&breadcrumbs=' + breadcrumbs);
   });
 
   /**
@@ -476,10 +477,6 @@ $(document).ready(function () {
     _moveInNodeID = _selectedNodeID;
     _moveInNodeName = _selectedNodeName;
     _moveInNodeType = _selectedNodeType;
-
-    if(!checkMoveUp()){
-      return false;
-    }
     moveUp();
   });
 
@@ -487,83 +484,46 @@ $(document).ready(function () {
     _moveInNodeID = _selectedNodeID;
     _moveInNodeName = _selectedNodeName;
     _moveInNodeType = _selectedNodeType;
-
-    if(!checkMoveDown()){
-      return false;
-    }
     moveDown();
   });
   
-  function checkMoveUp() {
+  function moveUp() {
     let currentNode = $('#treeView').find('div[data-file-id="'+  _moveInNodeID + '"]').parent();
     let preNode = $(currentNode).prev();
     if(preNode.length === 0){
-      layer.msg('该内容已经在最前面对了啦！');
+      layer.msg('该内容已经在最前面了！');
       return false;
     }
-    return true;
-  }
 
-  function checkMoveDown() {
-    let currentNode = $('#treeView').find('div[data-file-id="'+  _moveInNodeID + '"]').parent();
-    let nextNode = $(currentNode).next();
-    if(nextNode.length === 0){
-      layer.msg('该内容已经在最后面对了啦！');
-      return false;
-    }
-    return true;
-  }
-  
-  function moveUp() {
-    let currentRootNode = $('#treeView').find('div[data-file-id="'+  _moveInNodeID + '"]').parent().parent();
-    let childrenList = $(currentRootNode).children('li');
-    let nodeIdList = [];
-    let currentIdIndex = -1;
-    let preNodeIdIndex = -1;
+    let currentNodeId = $(currentNode).children('div.treeNode').attr('data-file-id');
+    let preNodeId = $(preNode).children('div.treeNode').attr('data-file-id');
 
-    $.each(childrenList, function (index, children) {
-      if($(children).find('div.treeNode').attr('data-file-id') == _moveInNodeID){
-        currentIdIndex = index;
-        preNodeIdIndex = index - 1;
-      }
-      nodeIdList.push($(children).find('div.treeNode').attr('data-file-id'));
-    });
-
-    let temp = nodeIdList[currentIdIndex];
-    nodeIdList[currentIdIndex] = nodeIdList[preNodeIdIndex];
-    nodeIdList[preNodeIdIndex] = temp;
-    changeNodeOrder(_selectedNodeParentID, nodeIdList);
+    changeNodeOrder(_selectedNodeParentID, currentNodeId, preNodeId);
   }
   
   function moveDown() {
-    let currentRootNode = $('#treeView').find('div[data-file-id="'+  _moveInNodeID + '"]').parent().parent();
-    let childrenList = $(currentRootNode).children('li');
-    let nodeIdList = [];
-    let currentIdIndex = -1;
-    let nextNodeIdIndex = -1;
+    let currentNode = $('#treeView').find('div[data-file-id="'+  _moveInNodeID + '"]').parent();
+    let nextNode = $(currentNode).next();
+    if(nextNode.length === 0){
+      layer.msg('该内容已经在最后面了！');
+      return false;
+    }
 
-    $.each(childrenList, function (index, children) {
-      if($(children).find('div.treeNode').attr('data-file-id') == _moveInNodeID){
-        currentIdIndex = index;
-        nextNodeIdIndex = index + 1;
-      }
-      nodeIdList.push($(children).find('div.treeNode').attr('data-file-id'));
-    });
+    let currentNodeId = $(currentNode).children('div.treeNode').attr('data-file-id');
+    let nextNodeId = $(nextNode).children('div.treeNode').attr('data-file-id');
 
-    let temp = nodeIdList[currentIdIndex];
-    nodeIdList[currentIdIndex] = nodeIdList[nextNodeIdIndex];
-    nodeIdList[nextNodeIdIndex] = temp;
-    changeNodeOrder(_selectedNodeParentID, nodeIdList);
+    changeNodeOrder(_selectedNodeParentID, currentNodeId, nextNodeId);
   }
 
-  function changeNodeOrder(parentNodeID, childNodeOrder) {
+  function changeNodeOrder(parentNodeID, currentNodeId, swapNodeId) {
     $.ajax({
-      url: '/item/changeNodeOrder',
+      url: '/archive/changeOrder',
       type: 'put',
       dataType: 'json',
       data:{
         parentItemID: parentNodeID,
-        childNodeOrder: childNodeOrder.toString(),
+        archiveID: currentNodeId,
+        archiveSwapID: swapNodeId,
         loginUser: getLoginUser()
       },
       success: function(res){
@@ -629,7 +589,7 @@ $(document).ready(function () {
    */
   function moveNode(){
     $.ajax({
-      url: '/item/move',
+      url: '/archive/changePosition',
       type: 'put',
       dataType: 'json',
       data:{
@@ -658,10 +618,13 @@ $(document).ready(function () {
     _moveInNodeType = '';
   }
 
-  /**
-   * 保存指标
-   */
-  $('#btn-save').click(function () {
+  $('#form-field-itemName').keydown(function (e) {
+    if(e.keyCode === 13){
+      saveItem();
+    }
+  });
+
+  function saveItem(){
     _itemName = $.trim($('#form-field-itemName').val());
     _selectedNodeName = _itemName;
 
@@ -675,6 +638,13 @@ $(document).ready(function () {
     if(_optionType === 'upd'){
       changeItem();
     }
+  }
+
+  /**
+   * 保存指标
+   */
+  $('#btn-save').click(function () {
+    saveItem();
   });
 
   /**
@@ -716,7 +686,7 @@ $(document).ready(function () {
 
   function checkIsEmpty() {
     if(_itemName.length === 0){
-      layer.msg('请输入字段内容。');
+      layer.msg('请输入指标内容。');
       return false;
     }
     return true;

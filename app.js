@@ -7,11 +7,15 @@ let bodyParser = require('body-parser');
 
 const loginRouter = require('./routes/login');
 const indexRouter = require('./routes/index');
-const examineModuleRouter = require('./routes/module');
-const blockRouter = require('./routes/block');
-const itemRouter = require('./routes/item');
-const detailRouter = require('./routes/detail');
-const detailViewRouter = require('./routes/detailView');
+
+const archiveRouter = require('./routes/archive');
+const archiveDetailRouter = require('./routes/archiveDetail');
+
+// const examineModuleRouter = require('./routes/module');
+// const blockRouter = require('./routes/block');
+// const itemRouter = require('./routes/item');
+// const detailRouter = require('./routes/detail');
+// const detailViewRouter = require('./routes/detailView');
 const logoRouter = require('./routes/logo');
 const backImageRouter = require('./routes/backImage');
 const branchResourceRouter = require('./routes/branchResource');
@@ -51,11 +55,16 @@ app.use(function (req, res, next) {
 
 app.use('/', loginRouter);
 app.use('/index', indexRouter);
-app.use('/module', examineModuleRouter);
-app.use('/block', blockRouter);
-app.use('/item', itemRouter);
-app.use('/detail', detailRouter);
-app.use('/detailView', detailViewRouter);
+
+// app.use('/module', examineModuleRouter);
+// app.use('/block', blockRouter);
+// app.use('/item', itemRouter);
+// app.use('/detail', detailRouter);
+// app.use('/detailView', detailViewRouter);
+app.use('/archive', archiveRouter);
+app.use('/archiveDetail', archiveDetailRouter);
+
+
 app.use('/logo', logoRouter);
 app.use('/backImage', backImageRouter);
 app.use('/branchResource', branchResourceRouter);

@@ -1,15 +1,14 @@
 let express = require('express');
 let router = express.Router();
-let sysConfig = require('../config/sysConfig');
 let commonService = require('../service/commonService');
 
 router.get('/', function(req, res, next) {
-  res.render('item', {title: '考评内容管理'});
+  res.render('archive', {title: '考评指标管理'});
 });
 
 router.get('/data', function(req, res, next) {
-  let service = new commonService.commonInvoke('item');
-  let parameter = '/' + sysConfig.bankID + '/' + sysConfig.branchID;
+  let service = new commonService.commonInvoke('archive');
+  let parameter = '/1/9999/' + req.cookies.secmsBankCode + '/' + req.cookies.secmsBranchCode;
   service.get(parameter, function (result) {
     if(result.err || !result.content.result){
       res.json({
@@ -20,15 +19,15 @@ router.get('/data', function(req, res, next) {
       res.json({
         err: !result.content.result,
         msg: result.content.responseMessage,
-        itemList: result.content.responseData
+        archiveList: result.content.responseData
       });
     }
   });
 });
 
 router.get('/checkName', function (req, res, next) {
-  let service = new commonService.commonInvoke('itemExist');
-  let parameter = req.query.itemName;
+  let service = new commonService.commonInvoke('checkArchiveIsExist');
+  let parameter = '/' + req.cookies.secmsBankCode + '/' + req.cookies.secmsBranchCode + '/' + req.cookies.archiveName;
 
   service.get(parameter, function (result) {
     if(result.err || !result.content.result){
@@ -47,13 +46,13 @@ router.get('/checkName', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-  let service = new commonService.commonInvoke('item');
+  let service = new commonService.commonInvoke('archive');
   let data = {
-    bankID: sysConfig.bankID,
-    branchID: sysConfig.branchID,
-    itemName: req.body.itemName,
-    itemType: req.body.itemType,
-    parentItemID: req.body.parentItemID,
+    bankCode: req.cookies.secmsBankCode,
+    branchCode: req.cookies.secmsBranchCode,
+    archiveName: req.body.itemName,
+    archiveType: req.body.itemType,
+    archiveParentID: req.body.parentItemID,
     loginUser: req.body.loginUser
   };
 
@@ -72,41 +71,41 @@ router.post('/', function (req, res, next) {
   });
 });
 
-router.post('/detail', function (req, res, next) {
-  let service = new commonService.commonInvoke('saveDetailItem');
-  let data = {
-    bankID: sysConfig.bankID,
-    branchID: sysConfig.branchID,
-    itemName: req.body.itemName,
-    itemType: req.body.itemType,
-    parentItemID: req.body.parentItemID,
-    loginUser: req.body.loginUser
-  };
-
-  service.add(data, function (result) {
-    if(result.err){
-      res.json({
-        err: true,
-        msg: result.msg
-      });
-    }else{
-      res.json({
-        err: !result.content.result,
-        msg: result.content.responseMessage
-      });
-    }
-  });
-});
+// router.post('/detail', function (req, res, next) {
+//   let service = new commonService.commonInvoke('saveDetailItem');
+//   let data = {
+//     bankID: sysConfig.bankID,
+//     branchID: sysConfig.branchID,
+//     itemName: req.body.itemName,
+//     itemType: req.body.itemType,
+//     parentItemID: req.body.parentItemID,
+//     loginUser: req.body.loginUser
+//   };
+//
+//   service.add(data, function (result) {
+//     if(result.err){
+//       res.json({
+//         err: true,
+//         msg: result.msg
+//       });
+//     }else{
+//       res.json({
+//         err: !result.content.result,
+//         msg: result.content.responseMessage
+//       });
+//     }
+//   });
+// });
 
 router.put('/', function (req, res, next) {
-  let service = new commonService.commonInvoke('item');
+  let service = new commonService.commonInvoke('archive');
   let data = {
-    itemID: req.body.itemID,
-    bankID: sysConfig.bankID,
-    branchID: sysConfig.branchID,
-    itemName: req.body.itemName,
-    itemType: req.body.itemType,
-    parentItemID: req.body.parentItemID,
+    archiveID: req.body.itemID,
+    bankCode: req.cookies.secmsBankCode,
+    branchCode: req.cookies.secmsBranchCode,
+    archiveName: req.body.itemName,
+    archiveType: req.body.itemType,
+    archiveParentID: req.body.parentItemID,
     loginUser: req.body.loginUser
   };
 
@@ -125,15 +124,13 @@ router.put('/', function (req, res, next) {
   });
 });
 
-router.put('/move', function (req, res, next) {
-  let service = new commonService.commonInvoke('moveItem');
+router.put('/changePosition', function (req, res, next) {
+  let service = new commonService.commonInvoke('changeArchivePosition');
   let data = {
-    itemID: req.body.itemID,
-    bankID: sysConfig.bankID,
-    branchID: sysConfig.branchID,
-    itemName: req.body.itemName,
-    itemType: req.body.itemType,
-    parentItemID: req.body.parentItemID,
+    archiveID: req.body.itemID,
+    bankCode: req.cookies.secmsBankCode,
+    branchCode: req.cookies.secmsBranchCode,
+    archiveParentID: req.body.parentItemID,
     loginUser: req.body.loginUser
   };
 
@@ -152,13 +149,13 @@ router.put('/move', function (req, res, next) {
   });
 });
 
-router.put('/changeNodeOrder', function (req, res, next) {
-  let service = new commonService.commonInvoke('changeNodeOrder');
+router.put('/changeOrder', function (req, res, next) {
+  let service = new commonService.commonInvoke('changeArchiveOrder');
   let data = {
-    bankID: sysConfig.bankID,
-    branchID: sysConfig.branchID,
-    parentItemID: req.body.parentItemID,
-    itemsOrder: req.body.childNodeOrder,
+    archiveID: req.body.archiveID,
+    archiveSwapID: req.body.archiveSwapID,
+    bankCode: req.cookies.secmsBankCode,
+    branchCode: req.cookies.secmsBranchCode,
     loginUser: req.body.loginUser
   };
 
@@ -178,10 +175,9 @@ router.put('/changeNodeOrder', function (req, res, next) {
 });
 
 router.delete('/', function (req, res, next) {
-  let service = new commonService.commonInvoke('item');
-  let itemID = req.query.itemID;
-  let itemType = req.query.itemType;
-  let parameter = '/' + sysConfig.bankID + '/' + sysConfig.branchID + '/' + itemID + '/' + itemType;
+  let service = new commonService.commonInvoke('archive');
+  let archiveID = req.query.itemID;
+  let parameter = '/' + req.cookies.secmsBankCode + '/' + req.cookies.secmsBranchCode + '/' + archiveID;
 
   service.delete(parameter, function (result) {
     if(result.err){

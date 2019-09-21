@@ -83,10 +83,8 @@ function setActiveNav() {
     pathname = '/users';
   }
 
-  if((pathname.indexOf('item') >= 0 && pathname.indexOf('itemBatch') === -1)
-      || pathname.indexOf('detail') >= 0
-      || pathname.indexOf('detailView') >= 0){
-    pathname = '/item';
+  if(pathname.indexOf('archive') >= 0){
+    pathname = '/archive';
   }
   $('.nav-list li.active').removeClass('active');
   $('.nav-list li.open').removeClass('open').removeClass('active');
