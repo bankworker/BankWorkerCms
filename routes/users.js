@@ -4,18 +4,28 @@ let commonService = require('../service/commonService');
 let router = express.Router();
 
 router.get('/', function(req, res, next) {
+  res.render('users', {title: '员工账户信息一览'});
+});
+
+router.get('/searchList', function(req, res, next) {
   let service = new commonService.commonInvoke('branchStaff');
-  let pageNumber = req.query.pageNumber;
-  let bankCode = req.cookies.secmsBankCode;
-  let branchCode = req.cookies.secmsBranchCode;
+  let pageNumber = parseInt(req.query.pageNumber);
+  let parameter = '/' + pageNumber + '/' + sysConfig.pageSize + '/' + req.cookies.secmsBankCode + '/' + req.cookies.secmsBranchCode;
 
-  if(pageNumber === undefined){
-    pageNumber = 1;
-  }
-
-  service.getPageData(pageNumber, bankCode, branchCode,function (result) {
-    let renderData = commonService.buildRenderData('员工账户信息一览', pageNumber, result);
-    res.render('users', renderData);
+  service.get(parameter, function (result) {
+    if (result.err || !result.content.result) {
+      res.json({
+        err: true,
+        msg: result.msg
+      });
+    } else {
+      let dataContent = commonService.buildRenderData('员工账户信息一览', pageNumber, result);
+      res.json({
+        err: !result.content.result,
+        msg: result.content.responseMessage,
+        dataContent: dataContent
+      });
+    }
   });
 });
 

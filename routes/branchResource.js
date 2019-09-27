@@ -6,23 +6,33 @@ let upload = uploadUtils.createUploadObject(['public','upload','branch']);
 let router = express.Router();
 
 router.get('/', function(req, res, next) {
+  res.render('branchResource', {title: '营业网点资源管理'});
+});
+
+router.get('/searchList', function(req, res, next) {
   let service = new commonService.commonInvoke('branchResource');
-  let pageNumber = req.query.pageNumber;
-  if(pageNumber === undefined){
-    pageNumber = 1;
-  }
+  let pageNumber = parseInt(req.query.pageNumber);
   let parameter = '/' + pageNumber + '/' + sysConfig.pageSize + '/' + req.cookies.secmsBankCode + '/' + req.cookies.secmsBranchCode;
 
   service.get(parameter, function (result) {
-    let renderData = commonService.buildRenderData('营业网点资源管理', pageNumber, result);
-    if(renderData.dataList !== null){
-      for(let data of renderData.dataList){
-        if(data.resourceUrl.substr(data.resourceUrl.lastIndexOf('.')+1).toLowerCase() === 'mp4'){
-          data.isVideo = true;
+    if (result.err || !result.content.result) {
+      res.json({
+        err: true,
+        msg: result.msg
+      });
+    } else {
+      let dataContent = commonService.buildRenderData('营业网点新闻管理', pageNumber, result);
+      if(dataContent.dataList !== null){
+        for(let data of dataContent.dataList){
+          data.isVideo = data.resourceUrl.substr(data.resourceUrl.lastIndexOf('.') + 1).toLowerCase() === 'mp4';
         }
       }
+      res.json({
+        err: !result.content.result,
+        msg: result.content.responseMessage,
+        dataContent: dataContent
+      });
     }
-    res.render('branchResource', renderData);
   });
 });
 

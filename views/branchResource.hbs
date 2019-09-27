@@ -28,7 +28,7 @@
       <button type="button" class="btn btn-primary" ng-click="onAdd()"><i class="icon-plus"></i>添加</button>
       <div class="space-6"></div>
       <div class="table-header">
-        找到{{totalCount}}条数据
+        找到<span ng-bind="model.totalCount"></span>条数据
       </div>
       <div class="table-responsive">
         <table id="data-list" class="table table-striped table-bordered table-hover no-margin-bottom">
@@ -53,69 +53,49 @@
           </tr>
           </thead>
           <tbody>
-          {{#each dataList}}
-            <tr>
+            <tr ng-repeat="data in model.dataList">
               <td class="center">
-                {{#if this.isVideo}}
-                  <video src="{{this.resourceUrl}}" controls="controls" style="width: 150px"></video>
-                {{else}}
-                  <img src="{{this.resourceUrl}}" style="width: 150px">
-                {{/if}}
-
+                <video ng-src="\{{data.resourceUrl}}" controls="controls" style="width: 150px" ng-if="data.isVideo == true"></video>
+                <img ng-src="\{{data.resourceUrl}}" style="width: 150px" ng-if="data.isVideo == false">
               </td>
-              <td>{{this.resourceUrl}}</td>
 
-              <td>{{this.createUser}}</td>
-              <td>{{this.createTime}}</td>
-              <td>{{this.updateUser}}</td>
-              <td>{{this.updateTime}}</td>
+              <td class="center" ng-bind="data.resourceUrl"></td>
+
+              <td ng-bind="data.createUser"></td>
+              <td ng-bind="data.createTime"></td>
+              <td ng-bind="data.updateUser"></td>
+              <td ng-bind="data.updateTime"></td>
               <td>
                 <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                  <button type="button" class="btn btn-sm btn-danger" ng-click="onDelete('{{this.resourceID}}', '{{this.resourceUrl}}')">
+                  <button type="button" class="btn btn-sm btn-danger" ng-click="onDelete(data.resourceID, data.resourceUrl)">
                     <i class="icon-trash"></i>
                     删除
                   </button>
                 </div>
               </td>
             </tr>
-          {{/each}}
           </tbody>
         </table>
       </div>
 
-      {{#if paginationArray}}
-        <div class="modal-footer no-margin-top">
-          <ul class="pagination pull-right no-margin">
-            <li class="prev">
-              {{#if prePageNum}}
-                <a href="/branchResource?pageNumber={{prePageNum}}">
-                <i class="icon-double-angle-left"></i>
-                </a>
-              {{else}}
-                <span>
+      <div class="modal-footer no-margin-top" ng-if="model.totalCount > 0">
+        <ul class="pagination pull-right no-margin">
+          <li class="prev">
+            <a ng-if="model.pageNumber > 1" href="javascript:;" ng-click="onPrePage()">
               <i class="icon-double-angle-left"></i>
-            </span>
-              {{/if}}
-            </li>
-            {{#each paginationArray}}
-              <li>
-                <a href="/branchResource?pageNumber={{this}}">{{this}}</a>
-              </li>
-            {{/each}}
-            <li class="next">
-              {{#if nextPageNum}}
-                <a href="/branchResource?pageNumber={{nextPageNum}}">
-                <i class="icon-double-angle-right"></i>
-                </a>
-              {{else}}
-                <span>
+            </a>
+          </li>
+          <li ng-repeat="pageNumber in model.paginationArray" ng-class="{'active': model.pageNumber == pageNumber}">
+            <a href="javascript:;" ng-click="onPagination(pageNumber)">\{{pageNumber}}</a>
+          </li>
+          <li class="next">
+            <a ng-if="model.maxPageNumber > 0 && model.pageNumber < model.maxPageNumber" href="javascript:;" ng-click="onNextPage()">
               <i class="icon-double-angle-right"></i>
-            </span>
-              {{/if}}
-            </li>
-          </ul>
-        </div>
-      {{/if}}
+            </a>
+          </li>
+        </ul>
+      </div>
+
     </div>
   </div>
 
@@ -142,5 +122,4 @@
 
 </div>
 
-<input type="hidden" value="{{currentPageNum}}" id="hidden-currentPageNum">
 <script src="/javascripts/view/branchResource.js"></script>

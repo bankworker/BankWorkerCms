@@ -45,6 +45,7 @@
               </a>
               <button type="button" class="btn btn-success" ng-click="onSave()" ng-disabled="(myForm.newsTitle.$pristine && model.add)
                                                                           || (myForm.newsTitle.$dirty && myForm.newsTitle.$invalid)
+                                                                          || model.newsThumbnailUrl == '/images/news-demo.png'
                                                                           || (myForm.newsDate.$pristine && model.add)
                                                                           || (myForm.newsDate.$dirty && myForm.newsDate.$invalid)">
                 <i class="icon-save"></i>

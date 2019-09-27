@@ -5,7 +5,7 @@ app.controller('myCtrl', function ($scope, $http) {
     totalCount: 0,
     maxPageNumber: 0,
     dataList: [],
-    paginationArray: [],
+    paginationArray: []
   };
 
   $scope.onLoadData = function(){
@@ -17,6 +17,12 @@ app.controller('myCtrl', function ($scope, $http) {
       if(response.data.dataContent === null){
         return false;
       }
+      if(response.data.dataContent.dataList !== null && response.data.dataContent.dataList.length === 0 && $scope.model.pageNumber > 1){
+        $scope.model.pageNumber--;
+        $scope.loadData();
+        return false;
+      }
+
       $scope.model.totalCount = response.data.dataContent.totalCount;
       $scope.model.dataList = response.data.dataContent.dataList;
       $scope.model.pageNumber = response.data.dataContent.currentPageNum;
