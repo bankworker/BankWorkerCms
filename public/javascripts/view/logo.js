@@ -10,8 +10,8 @@ app.controller('myCtrl', function ($scope, $http) {
   };
 
   $scope.initUploadPlugins = function(){
-    uploadUtils.initUploadPlugin('#file-upload-logo', '/logo/fileUpload', ['png','jpg', 'jpeg'], false, function (opt,data) {
-      $scope.model.bankBranchLogo = data.fileUrl[0];
+    uploadUtils.initUploadPlugin('#file-upload-logo', '/common/fileUpload', ['png','jpg', 'jpeg'], false, function (opt,data) {
+      $scope.model.bankBranchLogo = data.fileUrlList[0];
       $scope.$apply();
       $scope.changeData();
       $('#modal-system-logo').modal('hide');

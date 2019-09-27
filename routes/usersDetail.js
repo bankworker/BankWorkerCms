@@ -1,9 +1,6 @@
 let express = require('express');
-let uploadUtils = require('../common/uploadUtils');
 let commonService = require('../service/commonService');
 let router = express.Router();
-
-let uploadPhoto = uploadUtils.createUploadObject(['public', 'upload', 'branch']);
 
 router.get('/', function(req, res, next) {
   res.render('usersDetail', {title: '员工账户编辑', staffID: req.query.staffID});
@@ -68,19 +65,6 @@ router.get('/cellphone', function(req, res, next) {
       });
     }
   });
-});
-
-router.post('/fileUpload',  uploadPhoto.array('file', 10), function(req,res,next){
-  let uploadFileUrlArray = [];
-  req.files.forEach(function (file, index) {
-    uploadFileUrlArray.push('http://' + req.headers.host + '/upload/branch/' + req.cookies.secmsBranchCode + '/' + file.originalname)
-  });
-  //将其发回客户端
-  res.json({
-    err : false,
-    fileUrl : uploadFileUrlArray
-  });
-  res.end();
 });
 
 router.post('/', function (req, res, next) {

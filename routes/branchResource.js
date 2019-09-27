@@ -1,8 +1,6 @@
 let express = require('express');
 let sysConfig = require('../config/sysConfig');
 let commonService = require('../service/commonService');
-let uploadUtils = require('../common/uploadUtils');
-let upload = uploadUtils.createUploadObject(['public','upload','branch']);
 let router = express.Router();
 
 router.get('/', function(req, res, next) {
@@ -34,19 +32,6 @@ router.get('/searchList', function(req, res, next) {
       });
     }
   });
-});
-
-router.post('/fileUpload',  upload.array('file', 10), function(req,res,next){
-  let uploadImageUrlArray = [];
-  req.files.forEach(function (file, index) {
-    uploadImageUrlArray.push('http://' + req.headers.host + '/upload/branch/' + req.cookies.secmsBranchCode + '/' + file.originalname)
-  });
-  //将其发回客户端
-  res.json({
-    err : false,
-    fileList : uploadImageUrlArray
-  });
-  res.end();
 });
 
 router.post('/', function (req, res, next) {

@@ -19,8 +19,8 @@ app.controller('myCtrl', function ($scope, $http) {
   };
 
   $scope.initUploadPlugins = function(){
-    uploadUtils.initUploadPlugin('#file-upload-thumbnail', '/news/edit/fileUpload', ['png','jpg', 'jpeg'], false, function (opt,data) {
-      $scope.model.newsThumbnailUrl = data.fileUrl[0];
+    uploadUtils.initUploadPlugin('#file-upload-thumbnail', '/common/fileUpload', ['png','jpg', 'jpeg'], false, function (opt,data) {
+      $scope.model.newsThumbnailUrl = data.fileUrlList[0];
       $scope.$apply();
       $('#modal-newsThumbnail').modal('hide');
     });

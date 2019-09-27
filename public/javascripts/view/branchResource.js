@@ -61,8 +61,8 @@ app.controller('myCtrl', function ($scope, $http) {
   };
 
   $scope.initUploadPlugins = function(){
-    uploadUtils.initUploadPlugin('#file-upload-logo', '/branchResource/fileUpload', ['png','jpg', 'jpeg', 'mp4'], true, function (opt,data) {
-      $scope.model.resourceList = data.fileList.toString();
+    uploadUtils.initUploadPlugin('#file-upload-logo', '/common/fileUpload', ['png','jpg', 'jpeg', 'mp4'], true, function (opt,data) {
+      $scope.model.resourceList = data.fileUrlList.toString();
       $scope.addData();
     });
   };

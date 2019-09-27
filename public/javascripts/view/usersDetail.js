@@ -49,13 +49,13 @@ app.controller('myCtrl', function ($scope, $http) {
   };
 
   $scope.initUploadPlugins = function(){
-    uploadUtils.initUploadPlugin('#file-upload-image', '/users/edit/fileUpload', ['png','jpg', 'jpeg'], false, function (opt,data) {
-      $scope.model.staffPhotoUrl = data.fileUrl[0];
+    uploadUtils.initUploadPlugin('#file-upload-image', '/common/fileUpload', ['png','jpg', 'jpeg'], false, function (opt,data) {
+      $scope.model.staffPhotoUrl = data.fileUrlList[0];
       $scope.$apply();
       $('#photo-upload-modal').modal('hide');
     });
-    uploadUtils.initUploadPlugin('#file-upload-resume', '/users/edit/fileUpload', ['png','jpg', 'jpeg'], false, function (opt,data) {
-      $scope.model.staffResumeUrl = data.fileUrl[0];
+    uploadUtils.initUploadPlugin('#file-upload-resume', '/common/fileUpload', ['png','jpg', 'jpeg'], false, function (opt,data) {
+      $scope.model.staffResumeUrl = data.fileUrlList[0];
       $scope.$apply();
       $('#resume-upload-modal').modal('hide');
     });
