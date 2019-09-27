@@ -1,7 +1,7 @@
 $(document).ready(function () {
   setAlertBell();
   setActiveNav();
-  setPaginationStatus();
+  // setPaginationStatus();
   addCommonEvent();
   showLoginUser();
   setSystemTitle();
@@ -86,6 +86,9 @@ function setActiveNav() {
   if(pathname.indexOf('archive') >= 0){
     pathname = '/archive';
   }
+  if(pathname.indexOf('mediaModule') >= 0){
+    pathname = '/mediaModule';
+  }
   $('.nav-list li.active').removeClass('active');
   $('.nav-list li.open').removeClass('open').removeClass('active');
   var element = $('.nav-list a[href="' + pathname + '"]');
@@ -94,29 +97,29 @@ function setActiveNav() {
 }
 
 
-function setPaginationStatus() {
-  var currentPageNum = $('#hidden-currentPageNum').val();
-  if(currentPageNum !== undefined){
-    //设置默认选中的页码
-    $('ul.pagination li').each(function () {
-      if($.trim($(this).text()) === currentPageNum){
-        $(this).addClass('active');
-      }
-    });
-
-    //设置前一页按钮是否可用
-    var firstPageNumber = $.trim($('ul.pagination li').eq(1).text());
-    if(currentPageNum === firstPageNumber){
-      $('ul.pagination li').eq(0).addClass('disabled');
-    }
-
-    //设置后一页按钮是否可用
-    var lastPageNumber = $.trim($('ul.pagination li').eq($('ul.pagination li').length - 2).text());
-    if(currentPageNum === lastPageNumber){
-      $('ul.pagination li').eq($('ul.pagination li').length - 1).addClass('disabled');
-    }
-  }
-}
+// function setPaginationStatus() {
+//   var currentPageNum = $('#hidden-currentPageNum').val();
+//   if(currentPageNum !== undefined){
+//     //设置默认选中的页码
+//     $('ul.pagination li').each(function () {
+//       if($.trim($(this).text()) === currentPageNum){
+//         $(this).addClass('active');
+//       }
+//     });
+//
+//     //设置前一页按钮是否可用
+//     var firstPageNumber = $.trim($('ul.pagination li').eq(1).text());
+//     if(currentPageNum === firstPageNumber){
+//       $('ul.pagination li').eq(0).addClass('disabled');
+//     }
+//
+//     //设置后一页按钮是否可用
+//     var lastPageNumber = $.trim($('ul.pagination li').eq($('ul.pagination li').length - 2).text());
+//     if(currentPageNum === lastPageNumber){
+//       $('ul.pagination li').eq($('ul.pagination li').length - 1).addClass('disabled');
+//     }
+//   }
+// }
 
 function addCommonEvent() {
   $('li.logout').click(function () {
@@ -190,22 +193,22 @@ function isRate(v) {
   return re.test(v);
 }
 
-Date.prototype.format = function (format) {
-  var args = {
-    "M+": this.getMonth() + 1,
-    "d+": this.getDate(),
-    "h+": this.getHours(),
-    "m+": this.getMinutes(),
-    "s+": this.getSeconds(),
-    "q+": Math.floor((this.getMonth() + 3) / 3),  //quarter
-    "S": this.getMilliseconds()
-  };
-  if (/(y+)/.test(format))
-    format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-  for (var i in args) {
-    var n = args[i];
-    if (new RegExp("(" + i + ")").test(format))
-      format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? n : ("00" + n).substr(("" + n).length));
-  }
-  return format;
-};
+// Date.prototype.format = function (format) {
+//   var args = {
+//     "M+": this.getMonth() + 1,
+//     "d+": this.getDate(),
+//     "h+": this.getHours(),
+//     "m+": this.getMinutes(),
+//     "s+": this.getSeconds(),
+//     "q+": Math.floor((this.getMonth() + 3) / 3),  //quarter
+//     "S": this.getMilliseconds()
+//   };
+//   if (/(y+)/.test(format))
+//     format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+//   for (var i in args) {
+//     var n = args[i];
+//     if (new RegExp("(" + i + ")").test(format))
+//       format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? n : ("00" + n).substr(("" + n).length));
+//   }
+//   return format;
+// };

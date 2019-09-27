@@ -11,11 +11,9 @@ const indexRouter = require('./routes/index');
 const archiveRouter = require('./routes/archive');
 const archiveDetailRouter = require('./routes/archiveDetail');
 
-// const examineModuleRouter = require('./routes/module');
-// const blockRouter = require('./routes/block');
-// const itemRouter = require('./routes/item');
-// const detailRouter = require('./routes/detail');
-// const detailViewRouter = require('./routes/detailView');
+const mediaModuleRouter = require('./routes/mediaModule');
+const mediaModuleDetail4ImageRouter = require('./routes/mediaModuleDetail4Image');
+const mediaModuleDetail4VideoRouter = require('./routes/mediaModuleDetail4Video');
 const logoRouter = require('./routes/logo');
 const backImageRouter = require('./routes/backImage');
 const branchResourceRouter = require('./routes/branchResource');
@@ -56,7 +54,9 @@ app.use(function (req, res, next) {
 app.use('/', loginRouter);
 app.use('/index', indexRouter);
 
-// app.use('/module', examineModuleRouter);
+app.use('/mediaModule', mediaModuleRouter);
+app.use('/mediaModule/edit/image', mediaModuleDetail4ImageRouter);
+app.use('/mediaModule/edit/video', mediaModuleDetail4VideoRouter);
 // app.use('/block', blockRouter);
 // app.use('/item', itemRouter);
 // app.use('/detail', detailRouter);

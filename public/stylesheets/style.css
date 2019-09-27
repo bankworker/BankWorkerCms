@@ -2,6 +2,12 @@ body{
   font-size: 13px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+.table thead th{
+  text-align: center;
+}
+.table tbody td{
+  text-align: center;
+}
 .no-margin-bottom{
   margin-bottom: 0;
 }

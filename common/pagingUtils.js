@@ -13,7 +13,9 @@ exports.getPaginationArray = function(pageNumber, totalCount){
       startPageNumber = pageNumber - 5;
     }
     for(var i = 1; i <= paginationSize; i++){
-      paginationArray.push(startPageNumber);
+      if(startPageNumber <= maxPageNum){
+        paginationArray.push(startPageNumber);
+      }
       startPageNumber++;
     }
   }else{

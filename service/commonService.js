@@ -1,7 +1,7 @@
-var serviceInvoke = require('../common/serviceInvokeUtils');
-var sysConfig = require('../config/sysConfig');
-var apiConfig = require('../config/apiConfig');
-var pagingUtils = require('../common/pagingUtils');
+let serviceInvoke = require('../common/serviceInvokeUtils');
+let sysConfig = require('../config/sysConfig');
+let apiConfig = require('../config/apiConfig');
+let pagingUtils = require('../common/pagingUtils');
 
 exports.commonInvoke = function(apiName) {
   this.pageSize = sysConfig.pageSize;
@@ -29,23 +29,25 @@ exports.commonInvoke = function(apiName) {
 };
 
 exports.buildRenderData = function (title, pageNumber, serviceResult) {
-  var renderData = {};
+  let renderData = {};
   if(serviceResult.err || !serviceResult.content.result){
     renderData = {
       title: title,
       totalCount: 0,
+      pageSize: sysConfig.pageSize,
       paginationArray:[],
       dataList: []
     };
   }else{
-    var paginationArray = pagingUtils.getPaginationArray(pageNumber, serviceResult.content.totalCount);
-    var prePaginationNum = pagingUtils.getPrePaginationNum(pageNumber);
-    var nextPaginationNum = pagingUtils.getNextPaginationNum(pageNumber, serviceResult.content.totalCount);
+    let paginationArray = pagingUtils.getPaginationArray(pageNumber, serviceResult.content.totalCount);
+    let prePaginationNum = pagingUtils.getPrePaginationNum(pageNumber);
+    let nextPaginationNum = pagingUtils.getNextPaginationNum(pageNumber, serviceResult.content.totalCount);
     if(serviceResult.content.responseData === null){
       renderData = {
         title: title,
         totalCount: serviceResult.content.totalCount,
         currentPageNum: pageNumber,
+        pageSize: sysConfig.pageSize,
         dataList: serviceResult.content.responseData
       }
     }else{
@@ -57,6 +59,7 @@ exports.buildRenderData = function (title, pageNumber, serviceResult) {
           prePageNum: prePaginationNum,
           nextPageNum: nextPaginationNum,
           currentPageNum: pageNumber,
+          pageSize: sysConfig.pageSize,
           dataList: serviceResult.content.responseData
         }
       }else if(prePaginationNum === 0 && nextPaginationNum === -1){
@@ -65,6 +68,7 @@ exports.buildRenderData = function (title, pageNumber, serviceResult) {
           totalCount: serviceResult.content.totalCount,
           paginationArray: paginationArray,
           currentPageNum: pageNumber,
+          pageSize: sysConfig.pageSize,
           dataList: serviceResult.content.responseData
         }
       }else if(prePaginationNum === 0) {
@@ -74,6 +78,7 @@ exports.buildRenderData = function (title, pageNumber, serviceResult) {
           paginationArray: paginationArray,
           nextPageNum: nextPaginationNum,
           currentPageNum: pageNumber,
+          pageSize: sysConfig.pageSize,
           dataList: serviceResult.content.responseData
         }
       }else{
@@ -83,6 +88,7 @@ exports.buildRenderData = function (title, pageNumber, serviceResult) {
           paginationArray: paginationArray,
           prePageNum: prePaginationNum,
           currentPageNum: pageNumber,
+          pageSize: sysConfig.pageSize,
           dataList: serviceResult.content.responseData
         }
       }

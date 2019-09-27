@@ -4,18 +4,15 @@
     "port": 8080,
     "path": {
       "advertise": "/api/advertise",
-
       "archive": "/api/bank/branch/archive",
       "checkArchiveIsExist": "/api/bank/branch/archive/exist",
       "hasChildArchive": "/api/bank/branch/archive/hasChildArchive",
       "changeArchivePosition": "/api/bank/branch/archive/changePosition",
       "changeArchiveOrder": "/api/bank/branch/archive/changeOrder",
-
       "archiveDetail": "/api/bank/branch/archive/detail",
       "changeArchiveDetailPosition": "/api/bank/branch/archive/detail/changePosition",
       "deleteArchiveDetail": "/api/bank/branch/archive/detail/deleteArchiveDetail",
       "deleteOfArchive": "/api/bank/branch/archive/detail/deleteOfArchive",
-
       "news": "/api/news",
       "user": "/api/user",
       "userCellphone": "/api/user/cellphone",
@@ -35,7 +32,11 @@
       "distribute": "/api/business",
       "analyse4financial": "/api/analyse/financial",
       "analyse4lobby": "/api/analyse/lobby",
-      "changeNodeOrder": "/api/item/changeNodeOrder"
+      "changeNodeOrder": "/api/item/changeNodeOrder",
+      "mediaModule": "/api/bank/branch/mediaModule",
+      "changeMediaModuleOrder": "/api/bank/branch/mediaModule/changeMediaModuleOrder",
+      "changeMediaModuleDetailOrder": "/api/bank/branch/mediaModule/changeMediaModuleDetailOrder",
+      "changeMediaModuleStatus": "/api/bank/branch/mediaModule/changeDataStatus"
     }
   }
 }
