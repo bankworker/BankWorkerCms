@@ -23,9 +23,6 @@ const staffPostRouter = require('./routes/staffPost');
 const usersRouter = require('./routes/users');
 const usersDetailRouter = require('./routes/usersDetail');
 const changePasswordRouter = require('./routes/changePassword');
-const advertiseRouter = require('./routes/advertise');
-const advertiseDetailRouter = require('./routes/advertiseDetail');
-const distributeRouter = require('./routes/distribute');
 const analyseRouter = require('./routes/analyse');
 const commonRouter = require('./routes/common');
 let app = express();
@@ -53,32 +50,25 @@ app.use(function (req, res, next) {
 
 app.use('/', loginRouter);
 app.use('/index', indexRouter);
-
-app.use('/mediaModule', mediaModuleRouter);
-app.use('/mediaModule/edit/image', mediaModuleDetail4ImageRouter);
-app.use('/mediaModule/edit/video', mediaModuleDetail4VideoRouter);
-// app.use('/block', blockRouter);
-// app.use('/item', itemRouter);
-// app.use('/detail', detailRouter);
-// app.use('/detailView', detailViewRouter);
-app.use('/archive', archiveRouter);
-app.use('/archiveDetail', archiveDetailRouter);
-
-
 app.use('/logo', logoRouter);
 app.use('/backImage', backImageRouter);
 app.use('/branchResource', branchResourceRouter);
 app.use('/news', newsRouter);
 app.use('/news/edit', newsEditRouter);
+app.use('/staffPost', staffPostRouter);
 app.use('/users', usersRouter);
 app.use('/users/edit', usersDetailRouter);
-app.use('/staffPost', staffPostRouter);
 app.use('/changePassword', changePasswordRouter);
-app.use('/advertise', advertiseRouter);
-app.use('/advertiseDetail', advertiseDetailRouter);
-app.use('/distribute', distributeRouter);
+app.use('/archive', archiveRouter);
+app.use('/archiveDetail', archiveDetailRouter);
 app.use('/analyse', analyseRouter);
+app.use('/mediaModule', mediaModuleRouter);
+app.use('/mediaModule/edit/image', mediaModuleDetail4ImageRouter);
+app.use('/mediaModule/edit/video', mediaModuleDetail4VideoRouter);
 app.use('/common', commonRouter);
+
+// app.use('/distribute', distributeRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
