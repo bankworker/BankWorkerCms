@@ -71,3 +71,6 @@ body{
   margin-top: 8px;
   color: #b50404;
 }
+.treeNode-disabled{
+  color: red;
+}

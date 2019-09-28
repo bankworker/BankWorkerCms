@@ -71,32 +71,6 @@ router.post('/', function (req, res, next) {
   });
 });
 
-// router.post('/detail', function (req, res, next) {
-//   let service = new commonService.commonInvoke('saveDetailItem');
-//   let data = {
-//     bankID: sysConfig.bankID,
-//     branchID: sysConfig.branchID,
-//     itemName: req.body.itemName,
-//     itemType: req.body.itemType,
-//     parentItemID: req.body.parentItemID,
-//     loginUser: req.body.loginUser
-//   };
-//
-//   service.add(data, function (result) {
-//     if(result.err){
-//       res.json({
-//         err: true,
-//         msg: result.msg
-//       });
-//     }else{
-//       res.json({
-//         err: !result.content.result,
-//         msg: result.content.responseMessage
-//       });
-//     }
-//   });
-// });
-
 router.put('/', function (req, res, next) {
   let service = new commonService.commonInvoke('archive');
   let data = {
@@ -156,6 +130,31 @@ router.put('/changeOrder', function (req, res, next) {
     archiveSwapID: req.body.archiveSwapID,
     bankCode: req.cookies.secmsBankCode,
     branchCode: req.cookies.secmsBranchCode,
+    loginUser: req.body.loginUser
+  };
+
+  service.change(data, function (result) {
+    if(result.err){
+      res.json({
+        err: true,
+        msg: result.msg
+      });
+    }else{
+      res.json({
+        err: !result.content.result,
+        msg: result.content.responseMessage
+      });
+    }
+  });
+});
+
+router.put('/changeStatus', function (req, res, next) {
+  let service = new commonService.commonInvoke('changeArchiveStatus');
+  let data = {
+    archiveID: req.body.archiveID,
+    bankCode: req.cookies.secmsBankCode,
+    branchCode: req.cookies.secmsBranchCode,
+    dataStatus: req.body.dataStatus,
     loginUser: req.body.loginUser
   };
 

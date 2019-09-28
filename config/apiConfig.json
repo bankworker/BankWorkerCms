@@ -9,6 +9,9 @@
       "hasChildArchive": "/api/bank/branch/archive/hasChildArchive",
       "changeArchivePosition": "/api/bank/branch/archive/changePosition",
       "changeArchiveOrder": "/api/bank/branch/archive/changeOrder",
+      "changeArchiveStatus": "/api/bank/branch/archive/changeStatus",
+
+
       "archiveDetail": "/api/bank/branch/archive/detail",
       "changeArchiveDetailPosition": "/api/bank/branch/archive/detail/changePosition",
       "deleteArchiveDetail": "/api/bank/branch/archive/detail/deleteArchiveDetail",

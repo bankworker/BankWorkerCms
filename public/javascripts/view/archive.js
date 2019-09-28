@@ -8,6 +8,7 @@ $(document).ready(function () {
   let _selectedNodeName = '';
   let _selectedNodeParentID = '0';
   let _selectedNodeType = 'R';
+  let _selectedNodeStatus = 'N';
 
   let _moveOutNodeID = 0;
   let _moveOutNodeName = '';
@@ -27,7 +28,9 @@ $(document).ready(function () {
           "id": 0,
           "pid": -1,
           "title": "全部文件",
-          "type": 'R'
+          "type": 'R',
+          "status": 'N',
+
         }
       ]
     };
@@ -45,7 +48,8 @@ $(document).ready(function () {
             "id": archive.archiveID,
             "pid": archive.archiveParentID,
             "title": archive.archiveName,
-            "type": archive.archiveType
+            "type": archive.archiveType,
+            "status": archive.dataStatus
           })
         });
         let jtree = new Jtree(data, '#treeView');
@@ -53,6 +57,7 @@ $(document).ready(function () {
         bindTreeViewEvents();
         setOpenNodes();
         setFileNodeIcon();
+        setNodeStyle();
       },
       error: function(XMLHttpRequest){
         layer.msg('远程服务无响应，状态码：' + XMLHttpRequest.status);
@@ -60,6 +65,9 @@ $(document).ready(function () {
     });
   }
 
+  function setNodeStyle() {
+    $('div.treeNode[data-node-type="M"][data-node-status="D"]').addClass('treeNode-disabled');
+  }
   function setFileNodeIcon() {
     let detailNode = $('div.treeNode[data-node-type="D"]');
     $(detailNode).find('i.icon-file').remove();
@@ -109,6 +117,7 @@ $(document).ready(function () {
       _selectedNodeID = $(this).attr('data-file-id');
       _selectedNodeName = $(this).find('span.title').text();
       _selectedNodeParentID = $(this).attr('data-file-pid');
+      _selectedNodeStatus = $(this).attr('data-node-status');
     });
   }
 
@@ -478,6 +487,67 @@ $(document).ready(function () {
     _moveInNodeName = _selectedNodeName;
     _moveInNodeType = _selectedNodeType;
     moveUp();
+  });
+
+  $('li.change-status').click(function () {
+    let message = '';
+    let buttonTitle = '';
+    let dataStatus = '';
+    if(_selectedNodeStatus === 'A'){
+      message = '指标【' + _selectedNodeName + '】当前正在使用中，要将其停止使用吗？';
+      buttonTitle = '停用';
+      dataStatus = 'D';
+    }else{
+      message = '指标【' + _selectedNodeName + '】当前已停用，要将其启用吗？';
+      buttonTitle = '启用';
+      dataStatus = 'A';
+    }
+    bootbox.confirm({
+      message: message,
+      buttons: {
+        confirm: {
+          label: buttonTitle,
+          className: 'btn-danger'
+        },
+        cancel: {
+          label: '取消',
+          className: 'btn-default'
+        }
+      },
+      callback: function (result) {
+        if(result) {
+          //1、修改数据状态
+          $.ajax({
+            url: '/archive/changeStatus',
+            type: 'put',
+            dataType: 'json',
+            data:{
+              archiveID: _selectedNodeID,
+              dataStatus: dataStatus,
+              loginUser: getLoginUser()
+            },
+            success: function(res){
+              if(res.err){
+                layer.msg(res.msg);
+              }else{
+                //2、修改节点样式和节点状态
+                let currentNode = $('div.treeNode[data-node-type="M"][data-file-id="' + _selectedNodeID + '"]');
+                currentNode.attr('data-node-status', dataStatus);
+                if(dataStatus === 'D'){
+                  currentNode.addClass('treeNode-disabled');
+                }else{
+                  currentNode.removeClass('treeNode-disabled');
+                }
+              }
+            },
+            error: function(XMLHttpRequest, textStatus){
+              layer.msg('远程服务无响应，请检查网络设置。');
+            }
+          });
+        }
+      }
+    });
+
   });
 
   $('li.move-down').click(function () {

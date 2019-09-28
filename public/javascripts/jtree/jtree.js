@@ -32,7 +32,7 @@ function Jtree(treeData, treeID){
 
       _html += `
         <li>
-          <div class="treeNode ${className} ${treeRoot_cls}" style="padding-left: ${distance}" data-file-id="${item.id}" data-file-pid="${item.pid}" data-node-type="${item.type}">
+          <div class="treeNode ${className} ${treeRoot_cls}" style="padding-left: ${distance}" data-file-id="${item.id}" data-file-pid="${item.pid}" data-node-type="${item.type}" data-node-status="${item.status}">
             <i class="icon icon-control icon-add"></i>
             <i class="icon icon-file"></i>
             <span class="title">${item.title}</span>
