@@ -1,7 +1,6 @@
 $(document).ready(function () {
   setAlertBell();
   setActiveNav();
-  // setPaginationStatus();
   addCommonEvent();
   showLoginUser();
   setSystemTitle();
@@ -96,37 +95,12 @@ function setActiveNav() {
   $(element).parent().parent().parent().addClass('open active');
 }
 
-
-// function setPaginationStatus() {
-//   var currentPageNum = $('#hidden-currentPageNum').val();
-//   if(currentPageNum !== undefined){
-//     //设置默认选中的页码
-//     $('ul.pagination li').each(function () {
-//       if($.trim($(this).text()) === currentPageNum){
-//         $(this).addClass('active');
-//       }
-//     });
-//
-//     //设置前一页按钮是否可用
-//     var firstPageNumber = $.trim($('ul.pagination li').eq(1).text());
-//     if(currentPageNum === firstPageNumber){
-//       $('ul.pagination li').eq(0).addClass('disabled');
-//     }
-//
-//     //设置后一页按钮是否可用
-//     var lastPageNumber = $.trim($('ul.pagination li').eq($('ul.pagination li').length - 2).text());
-//     if(currentPageNum === lastPageNumber){
-//       $('ul.pagination li').eq($('ul.pagination li').length - 1).addClass('disabled');
-//     }
-//   }
-// }
-
 function addCommonEvent() {
   $('li.logout').click(function () {
     delCookie('secmsUser');
     delCookie('secmsUserID');
-    delCookie('secmsBankCode');
-    delCookie('secmsBranchCode');
+    // delCookie('secmsBankCode');
+    // delCookie('secmsBranchCode');
     location.href = '/';
   });
 }
@@ -135,7 +109,7 @@ function showLoginUser() {
   var cookie = getCookie('secmsUser');
   if(cookie !== null){
     var loginUser = JSON.parse(cookie);
-    $('li.light-blue span.user-info>span').text(loginUser.staffName);
+    $('li.light-blue span.user-info>span').text(loginUser.branchName);
   }
 }
 
@@ -192,23 +166,3 @@ function isRate(v) {
   var re = new RegExp(regu);
   return re.test(v);
 }
-
-// Date.prototype.format = function (format) {
-//   var args = {
-//     "M+": this.getMonth() + 1,
-//     "d+": this.getDate(),
-//     "h+": this.getHours(),
-//     "m+": this.getMinutes(),
-//     "s+": this.getSeconds(),
-//     "q+": Math.floor((this.getMonth() + 3) / 3),  //quarter
-//     "S": this.getMilliseconds()
-//   };
-//   if (/(y+)/.test(format))
-//     format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-//   for (var i in args) {
-//     var n = args[i];
-//     if (new RegExp("(" + i + ")").test(format))
-//       format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? n : ("00" + n).substr(("" + n).length));
-//   }
-//   return format;
-// };

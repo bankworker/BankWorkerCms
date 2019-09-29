@@ -16,9 +16,9 @@
   <script src="/javascripts/view/login.js"></script>
 </head>
 
-<body class="login-layout">
+<body class="login-layout" ng-app="myApp" ng-controller="myCtrl" ng-style="model.branchBackImageStyle">
 <div class="main-container" >
-  <div class="main-content" ng-app="myApp" ng-controller="myCtrl">
+  <div class="main-content" >
     <div class="row">
       <div class="col-sm-10 col-sm-offset-1">
         <div class="login-container">
@@ -27,8 +27,8 @@
             <div id="login-box" class="login-box visible widget-box no-border">
               <div class="center">
                 <div class="space-8"></div>
-                <img src="/images/jianhang_logo.jpg" style="width: 80%;" alt="">
-                <h4 class="blue" id="id-company-text">CBSS1000后台管理系统</h4>
+                <img ng-src="\{{model.branchLogoUrl}}" ng-if="model.branchLogoUrl !== '' " style="width: 80%;" alt="">
+                <h3 class="blue" id="id-company-text">CBSS1000后台管理系统</h3>
               </div>
 
               <div class="widget-body">

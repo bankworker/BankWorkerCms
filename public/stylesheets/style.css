@@ -74,3 +74,43 @@ body{
 .treeNode-disabled{
   color: red;
 }
+.index-left {
+  padding-left: 55px;
+  color: #33c3fa;
+}
+.index-left img{
+  width: 80%;
+}
+
+.index-left h1 {
+  color: #33c3fa;
+}
+.index-left h3 {
+  color: #33c3fa;
+}
+.index-header{
+  padding-left: 55px;
+  color: #33c3fa;
+}
+.index-header h1{
+  color: #4092ff;
+}
+.index-right{
+  float: right;
+  width: 500px;
+}
+.index-right li {
+  float: left;
+  width: 100px;
+  list-style-type: none;
+  padding: 0;
+  margin: 18px;
+  text-align: center;
+}
+.index-right span{
+  display: block;
+  margin-top: 10px;
+}
+.module span{
+  color: #000;
+}

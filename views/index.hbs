@@ -1,26 +1,98 @@
 <div class="breadcrumbs" id="breadcrumbs">
-  <script type="text/javascript">
-    try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
-  </script>
-
   <ul class="breadcrumb">
     <li>
       <i class="icon-home home-icon"></i>
       <a href="/index">Home</a>
     </li>
-
-    <!--<li>-->
-      <!--<a href="#">Other Pages</a>-->
-    <!--</li>-->
-    <!--<li class="active">Blank Page</li>-->
-  </ul><!-- .breadcrumb -->
+  </ul>
 </div>
 
-<div class="page-content">
+<div class="page-content" ng-app="myApp" ng-controller="myCtrl">
+  <div class="index-header">
+    <h1 ng-bind="model.branchName"></h1>
+  </div>
+  <div class="space-16" style="margin-left: 55px; margin-right: 55px; border: 0.5px solid #4092ff"></div>
   <div class="row">
-    <div class="col-xs-12 text-center">
-      <h1 style="margin: 35px auto; color: #428db9">欢迎使用 中国银行业营业网点文明规范服务标准评价体系后台管理系统</h1>
-      <!--<p>Welcome to {{title}}</p>-->
+    <div class="col-sm-6">
+      <div class="index-left">
+        <h1>Welcome</h1>
+        <h3>服务档案后台管理系统</h3>
+        <div class="space-32"></div>
+        <img src="/images/temp.png" alt="">
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="index-right">
+        <ul class="module">
+          <li>
+            <a href="/logo">
+              <img src="/images/icons/logo.png" alt="">
+              <span>Logo设置</span>
+            </a>
+          </li>
+          <li>
+            <a href="/backImage">
+              <img src="/images/icons/backimage.png" alt="">
+              <span>背景设置</span>
+            </a>
+          </li>
+          <li>
+            <a href="/branchResource">
+              <img src="/images/icons/newsResource.png" alt="">
+              <span>新闻资源</span>
+            </a>
+          </li>
+          <li>
+            <a href="/news">
+              <img src="/images/icons/news.png" alt="">
+              <span>新闻管理</span>
+            </a>
+          </li>
+          <li>
+            <a href="/staffPost">
+              <img src="/images/icons/position.png" alt="">
+              <span>岗位管理</span>
+            </a>
+          </li>
+          <li>
+            <a href="/changePassword">
+              <img src="/images/icons/password.png" alt="">
+              <span>密码修改</span>
+            </a>
+          </li>
+          <li>
+            <div ng-if="!model.isArchiveEnabled">
+              <img src="/images/icons/waiting.png" alt="">
+              <span>指标管理</span>
+            </div>
+            <a href="/archive" ng-if="model.isArchiveEnabled">
+              <img src="/images/icons/archive.png" alt="">
+              <span>指标管理</span>
+            </a>
+          </li>
+          <li>
+            <div ng-if="!model.isWorkBalanceEnabled">
+              <img src="/images/icons/waiting.png" alt="">
+              <span>业务分流分析</span>
+            </div>
+            <a href="/mediaModule" ng-if="model.isWorkBalanceEnabled">
+              <img src="/images/icons/bizFlow.png" alt="">
+              <span>业务分流分析</span>
+            </a>
+          </li>
+          <li>
+            <div ng-if="!model.isMediaModuleEnabled">
+              <img src="/images/icons/waiting.png" alt="">
+              <span>媒体内容管理</span>
+            </div>
+            <a href="/mediaModule" ng-if="model.isMediaModuleEnabled">
+              <img src="/images/icons/media.png" alt="">
+              <span>媒体内容管理</span>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
+<script src="/javascripts/view/index.js"></script>
