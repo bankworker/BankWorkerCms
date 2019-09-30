@@ -10,7 +10,6 @@ const indexRouter = require('./routes/index');
 
 const archiveRouter = require('./routes/archive');
 const archiveDetailRouter = require('./routes/archiveDetail');
-
 const mediaModuleRouter = require('./routes/mediaModule');
 const mediaModuleDetail4ImageRouter = require('./routes/mediaModuleDetail4Image');
 const mediaModuleDetail4VideoRouter = require('./routes/mediaModuleDetail4Video');
@@ -24,6 +23,7 @@ const usersRouter = require('./routes/users');
 const usersDetailRouter = require('./routes/usersDetail');
 const changePasswordRouter = require('./routes/changePassword');
 const analyseRouter = require('./routes/analyse');
+const callBackSettingRouter = require('./routes/callBackSetting');
 const commonRouter = require('./routes/common');
 let app = express();
 
@@ -63,6 +63,7 @@ app.use('/changePassword', changePasswordRouter);
 app.use('/archive', archiveRouter);
 app.use('/archiveDetail', archiveDetailRouter);
 app.use('/analyse', analyseRouter);
+app.use('/callBackSetting', callBackSettingRouter);
 app.use('/mediaModule', mediaModuleRouter);
 app.use('/mediaModule/edit/image', mediaModuleDetail4ImageRouter);
 app.use('/mediaModule/edit/video', mediaModuleDetail4VideoRouter);

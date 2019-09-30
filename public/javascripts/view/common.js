@@ -74,10 +74,6 @@ function setActiveNav() {
     pathname = '/news';
   }
 
-  if(pathname.indexOf('advertise') >= 0){
-    pathname = '/advertise';
-  }
-
   if(pathname.indexOf('users') >= 0){
     pathname = '/users';
   }

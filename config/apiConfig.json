@@ -3,15 +3,12 @@
     "host": "localhost",
     "port": 8080,
     "path": {
-      "advertise": "/api/advertise",
       "archive": "/api/bank/branch/archive",
       "checkArchiveIsExist": "/api/bank/branch/archive/exist",
       "hasChildArchive": "/api/bank/branch/archive/hasChildArchive",
       "changeArchivePosition": "/api/bank/branch/archive/changePosition",
       "changeArchiveOrder": "/api/bank/branch/archive/changeOrder",
       "changeArchiveStatus": "/api/bank/branch/archive/changeStatus",
-
-
       "archiveDetail": "/api/bank/branch/archive/detail",
       "changeArchiveDetailPosition": "/api/bank/branch/archive/detail/changePosition",
       "deleteArchiveDetail": "/api/bank/branch/archive/detail/deleteArchiveDetail",
@@ -33,6 +30,8 @@
       "changeLogo": "/api/bank/branch/changeLogo",
       "changeBackImage": "/api/bank/branch/changeBackImage",
       "distribute": "/api/business",
+      "callBack": "/api/bank/branch/callback",
+      "checkCallBackExist": "/api/bank/branch/callback/exist",
       "analyse4financial": "/api/analyse/financial",
       "analyse4lobby": "/api/analyse/lobby",
       "changeNodeOrder": "/api/item/changeNodeOrder",
