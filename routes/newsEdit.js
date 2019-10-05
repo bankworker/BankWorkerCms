@@ -11,7 +11,10 @@ router.get('/', function(req, res, next) {
 
 router.get('/detail', function(req, res, next) {
   let service = new commonService.commonInvoke('news');
-  let parameter = req.query.newsID;
+  let bankCode = req.cookies.secmsBankCode;
+  let branchCode = req.cookies.secmsBranchCode;
+  let newsID = req.query.newsID;
+  let parameter = bankCode + '/' + branchCode + '/' + newsID;
 
   service.get(parameter, function (result) {
     if (result.err || !result.content.result) {

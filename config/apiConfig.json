@@ -1,7 +1,7 @@
 {
   "StoreService": {
     "host": "localhost",
-    "port": 8080,
+    "port": 8081,
     "path": {
       "archive": "/api/bank/branch/archive",
       "checkArchiveIsExist": "/api/bank/branch/archive/exist",
