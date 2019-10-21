@@ -23,20 +23,23 @@
   </div>
 
   <div class="space-6"></div>
-  <div class="row" id="app">
+  <div class="row" ng-app="myApp" ng-controller="myCtrl">
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-12">
-          <form class="form-inline">
+          <form class="form-inline" name="myForm" novalidate>
             <div class="form-group">
               <label for="exampleInputEmail2">起始时间</label>
-              <input type="date" class="form-control" v-model="fromDate" placeholder="起始时间">
+              <input type="date" class="form-control" name="fromDate" ng-model="model.fromDate" placeholder="起始时间" required>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail2">截止时间</label>
-              <input type="date" class="form-control" v-model="toDate" placeholder="截止时间">
+              <input type="date" class="form-control" name="toDate" ng-model="model.toDate" placeholder="截止时间" required>
             </div>
-            <button type="button" class="btn btn-primary btn-analyse" :disabled="!enabledSave" @click="onAnalyse">
+            <button type="button" class="btn btn-primary btn-analyse" ng-click="onAnalyse()" ng-disabled="myForm.fromDate.$pristine
+                                                                                                          || (myForm.fromDate.$dirty && myForm.fromDate.$invalid)
+                                                                                                          || myForm.toDate.$pristine
+                                                                                                          || (myForm.toDate.$dirty && myForm.toDate.$invalid)">
               <span class="glyphicon glyphicon-stats"></span>
               分析
             </button>
@@ -50,7 +53,7 @@
             理财经理业务数据分析
           </div>
           <div class="table-responsive">
-            <table id="data-list" class="table table-striped table-bordered table-hover no-margin-bottom">
+            <table class="table table-striped table-bordered table-hover no-margin-bottom">
               <thead>
               <tr>
                 <th class="center">理财经理</th>
@@ -62,33 +65,15 @@
               </tr>
               </thead>
               <tbody>
-                <tr v-for="(data, index)  in financialAnalyseData" :class="{ warning: currentSelectedFinancialIndex === index }" @click="onRefreshFinancialCallback(index)">
-                  <td class="center">\{{data.financialName}}</td>
-                  <td class="align-right">\{{data.orderCount}}</td>
-                  <td>
-                    <span v-if="data.freeTime !== null && data.freeTime.day !== 0">\{{data.freeTime.day}}天</span>
-                    <span v-if="data.freeTime !== null && data.freeTime.hour !== 0">\{{data.freeTime.hour}}小时</span>
-                    <span v-if="data.freeTime !== null && data.freeTime.min !== 0">\{{data.freeTime.min}}分</span>
-                    <span v-if="data.freeTime !== null && data.freeTime.seconds !== 0">\{{data.freeTime.seconds}}秒</span>
-                  </td>
-                  <td>
-                    <span v-if="data.busyTime !== null && data.busyTime.day !== 0">\{{data.busyTime.day}}天</span>
-                    <span v-if="data.busyTime !== null && data.busyTime.hour !== 0">\{{data.busyTime.hour}}小时</span>
-                    <span v-if="data.busyTime !== null && data.busyTime.min !== 0">\{{data.busyTime.min}}分</span>
-                    <span v-if="data.busyTime !== null && data.busyTime.seconds !== 0">\{{data.busyTime.seconds}}秒</span>
-                  </td>
-                  <td>
-                    <span v-if="data.leaveTime !== null && data.leaveTime.day !== 0">\{{data.leaveTime.day}}天</span>
-                    <span v-if="data.leaveTime !== null && data.leaveTime.hour !== 0">\{{data.leaveTime.hour}}小时</span>
-                    <span v-if="data.leaveTime !== null && data.leaveTime.min !== 0">\{{data.leaveTime.min}}分</span>
-                    <span v-if="data.leaveTime !== null && data.leaveTime.seconds !== 0">\{{data.leaveTime.seconds}}秒</span>
-                  </td>
-                  <td>
-                    <span v-if="data.offDutyTime !== null && data.offDutyTime.day !== 0">\{{data.offDutyTime.day}}天</span>
-                    <span v-if="data.offDutyTime !== null && data.offDutyTime.hour !== 0">\{{data.offDutyTime.hour}}小时</span>
-                    <span v-if="data.offDutyTime !== null && data.offDutyTime.min !== 0">\{{data.offDutyTime.min}}分</span>
-                    <span v-if="data.offDutyTime !== null && data.offDutyTime.seconds !== 0">\{{data.offDutyTime.seconds}}秒</span>
-                  </td>
+                <tr ng-repeat="analyseData in model.financialBusinessAnalyse"
+                    ng-class="{'warning': model.currentSelectedFinancialIndex == $index}"
+                    ng-click="getFinancialCallbackAnalyse($index, analyseData.financialID)">
+                  <td class="center" ng-bind="analyseData.financialName"></td>
+                  <td class="center" ng-bind="analyseData.processedBusinessCount"></td>
+                  <td class="center" ng-bind="analyseData.waitTotalTime"></td>
+                  <td class="center" ng-bind="analyseData.busyTotalTime"></td>
+                  <td class="center" ng-bind="analyseData.leaveTotalTime"></td>
+                  <td class="center" ng-bind="analyseData.offDutyTotalTime"></td>
                 </tr>
               </tbody>
             </table>
@@ -99,7 +84,7 @@
             理财经理回呼数据分析
           </div>
           <div class="table-responsive">
-            <table id="data-list" class="table table-striped table-bordered table-hover no-margin-bottom">
+            <table class="table table-striped table-bordered table-hover no-margin-bottom">
               <thead>
               <tr>
                 <th>回呼内容</th>
@@ -107,9 +92,9 @@
               </tr>
               </thead>
               <tbody>
-                <tr v-for="data in currentFinancialCallbackAnalyseData">
-                  <td>\{{data.callBackMessage}}</td>
-                  <td class="align-right">\{{data.totalCount}}</td>
+                <tr ng-repeat="analyseData in model.financialCallbackAnalyse">
+                  <td ng-bind="analyseData.callbackMsg"></td>
+                  <td ng-bind="analyseData.processedCallbackCount"></td>
                 </tr>
               </tbody>
             </table>
@@ -123,26 +108,21 @@
             大堂经理业务数据分析
           </div>
           <div class="table-responsive">
-            <table id="data-list" class="table table-striped table-bordered table-hover no-margin-bottom">
+            <table class="table table-striped table-bordered table-hover no-margin-bottom">
               <thead>
               <tr>
                 <th class="center">大堂经理</th>
                 <th>发送量</th>
                 <th>回呼处理量</th>
-                <th>离岗</th>
               </tr>
               </thead>
               <tbody>
-              <tr v-for="(data, index)  in lobbyAnalyseData" :class="{ warning: currentSelectedLobbyIndex === index }" @click="onRefreshLobbyCallback(index)">
-                <td class="center">\{{data.lobbyName}}</td>
-                <td class="align-right">\{{data.sendTotalCount}}</td>
-                <td class="align-right">\{{data.callbackTotalCount}}</td>
-                <td>
-                  <span v-if="data.offDutyTime !== null && data.offDutyTime.day !== 0">\{{data.offDutyTime.day}}天</span>
-                  <span v-if="data.offDutyTime !== null && data.offDutyTime.hour !== 0">\{{data.offDutyTime.hour}}小时</span>
-                  <span v-if="data.offDutyTime !== null && data.offDutyTime.min !== 0">\{{data.offDutyTime.min}}分</span>
-                  <span v-if="data.offDutyTime !== null && data.offDutyTime.seconds !== 0">\{{data.offDutyTime.seconds}}秒</span>
-                </td>
+              <tr ng-repeat="analyseData in model.lobbyBusinessAnalyse"
+                  ng-class="{'warning': model.currentSelectedLobbyIndex == $index}"
+                  ng-click="getLobbyCallbackAnalyse($index, analyseData.lobbyID)">
+                <td class="center" ng-bind="analyseData.lobbyName"></td>
+                <td class="center" ng-bind="analyseData.processedBusinessCount"></td>
+                <td class="center" ng-bind="analyseData.processedCallbackCount"></td>
               </tr>
               </tbody>
             </table>
@@ -161,9 +141,9 @@
               </tr>
               </thead>
               <tbody>
-                <tr v-for="data in currentLobbyCallbackAnalyseData">
-                  <td>\{{data.callBackMessage}}</td>
-                  <td class="align-right">\{{data.totalCount}}</td>
+                <tr ng-repeat="analyseData in model.lobbyCallbackAnalyse">
+                  <td ng-bind="analyseData.callbackMsg"></td>
+                  <td class="align-right" ng-bind="analyseData.processedCallbackCount"></td>
                 </tr>
               </tbody>
             </table>

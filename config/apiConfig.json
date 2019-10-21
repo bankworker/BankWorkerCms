@@ -32,13 +32,15 @@
       "distribute": "/api/business",
       "callBack": "/api/bank/branch/callback",
       "checkCallBackExist": "/api/bank/branch/callback/exist",
-      "analyse4financial": "/api/analyse/financial",
-      "analyse4lobby": "/api/analyse/lobby",
       "changeNodeOrder": "/api/item/changeNodeOrder",
       "mediaModule": "/api/bank/branch/mediaModule",
       "changeMediaModuleOrder": "/api/bank/branch/mediaModule/changeMediaModuleOrder",
       "changeMediaModuleDetailOrder": "/api/bank/branch/mediaModule/changeMediaModuleDetailOrder",
-      "changeMediaModuleStatus": "/api/bank/branch/mediaModule/changeDataStatus"
+      "changeMediaModuleStatus": "/api/bank/branch/mediaModule/changeDataStatus",
+      "financialBusinessAnalyse": "/api/balance/businessAnalyse/financialBusinessAnalyse",
+      "financialCallbackAnalyse": "/api/balance/businessAnalyse/financialCallbackAnalyse",
+      "lobbyBusinessAnalyse": "/api/balance/businessAnalyse/lobbyBusinessAnalyse",
+      "lobbyCallbackAnalyse": "/api/balance/businessAnalyse/lobbyCallbackAnalyse"
     }
   }
 }

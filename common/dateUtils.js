@@ -22,3 +22,17 @@ exports.formatUTC = function(utc_datetime){
   //return new Date(parseInt(timestamp) * 1000).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ").format('yyyy-MM-dd hh:mm:ss');
   return new Date(parseInt(timestamp) * 1000).toFormat("YYYY-MM-DD HH24:MI:SS");
 };
+
+exports.formatGMT = function (gmt_datetime) {
+  let date = new Date(gmt_datetime);
+  return  date.getFullYear() + '-'
+      + formatTime((date.getMonth() + 1)) + '-'
+      + formatTime(date.getDate()) + ' ';
+};
+
+function formatTime(i){
+  if (i<10){
+    i="0" + i
+  }
+  return i;
+}

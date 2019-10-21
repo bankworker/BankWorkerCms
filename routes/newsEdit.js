@@ -2,7 +2,7 @@ let express = require('express');
 let fs = require("fs");
 let commonService = require('../service/commonService');
 let router = express.Router();
-let dateUtils = require('../common/DateUtils');
+let dateUtils = require('../common/dateUtils');
 
 router.get('/', function(req, res, next) {
   let newsID = req.query.newsID;
