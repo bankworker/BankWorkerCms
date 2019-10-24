@@ -57,6 +57,5 @@ function makeDir(dirpath) {
       }
     });
   }
-
   return true;
 }

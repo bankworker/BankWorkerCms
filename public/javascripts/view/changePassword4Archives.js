@@ -17,7 +17,7 @@ app.controller('myCtrl', function ($scope, $http) {
     $http.post('/', {
       account: $scope.model.account,
       password: $scope.model.password,
-      system: 'cms'
+      system: 'cbss'
     }).then(function successCallback(response) {
       if(response.data.err){
         bootbox.alert(response.data.msg);
@@ -28,7 +28,7 @@ app.controller('myCtrl', function ($scope, $http) {
         return false;
       }
 
-      $http.put('/changePassword', {
+      $http.put('/changePassword4Archives', {
         account: $scope.model.account,
         password: $scope.model.newPassword,
         loginUser: getLoginUser()
@@ -40,7 +40,7 @@ app.controller('myCtrl', function ($scope, $http) {
         $scope.model.password = '';
         $scope.model.newPassword = '';
         $scope.model.confirmPassword = '';
-        bootbox.alert('后台系统密码修改成功！');
+        bootbox.alert('服务档案密码修改成功！');
       }, function errorCallback(response) {
         bootbox.alert('网络异常，请检查网络设置');
       });

@@ -14,7 +14,7 @@ app.controller('myCtrl', function ($scope, $http) {
   };
 
   $scope.initUploadPlugins = function(){
-    uploadUtils.initUploadPlugin('#file-upload-video', '/common/fileUpload', ['mp4','MP4'], false, function (opt,data) {
+    uploadUtils.initUploadPlugin('#file-upload-video', '/common/fileUpload', ['mp4','MP4', 'webm'], false, function (opt,data) {
       $scope.model.mediaModuleVideoUrl = data.fileUrlList[0];
       $scope.$apply();
       $('#video-upload-modal').modal('hide');

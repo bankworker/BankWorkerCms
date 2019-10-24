@@ -42,7 +42,8 @@ app.controller('myCtrl', function ($scope, $http) {
     }
     $http.post('/', {
       account: $scope.model.account,
-      password: $scope.model.password
+      password: $scope.model.password,
+      system: 'cms',
     }).then(function successCallback(response) {
       if(response.data.err){
         bootbox.alert(response.data.msg);

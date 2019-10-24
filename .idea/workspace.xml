@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15c6e3b3-221d-47d7-9d8a-265b2c4aa486" name="Default Changelist" comment="指标管理添加状态修改功能">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/javascripts/view/changePassword4Archives.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/javascripts/view/changePassword4Media.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002001/bg2.jpeg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002001/henan_photo.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002001/henan_r.jpeg" afterDir="false" />
@@ -28,10 +29,55 @@
       <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002001/风景4.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002001/风景5.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002001/风景6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002002/timg1.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002002/timg2.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002002/timg3.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002002/timg4.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002002/timg5.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002002/timg6.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/2019-04-09电子发票.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/2019-04-09电子行程单.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/2019-04-10电子发票-1.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/2019-04-10电子行程单.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/2019-04-18电子发票.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/2019-04-18电子行程单.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/PI总结会V1.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/PI计划会V1.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/Z1002003.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/Z1002003_bg.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/jianhang_logo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/meizu16t-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/meizu16t-2.png680x680.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/meizu16t-3.png680x680.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/meizu16t-4.png680x680.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/oneplus-7pro-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/oneplus-7pro-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/oneplus-7pro-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/oneplus-7pro-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/p30pr0-6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/p30pro-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/p30pro-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/p30pro-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/p30pro-5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/p30pro2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/timg1.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/timg2.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/timg3.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/timg4.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/timg5.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/timg6.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/远离非法集资：投资理财篇.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/远离非法集资：老人篇.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/风景2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/风景3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/changePassword4Archives.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/changePassword4Media.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/changePassword4Archives.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/changePassword4Media.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/DateUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/common/dateUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/apiConfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/apiConfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/uploadUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/common/uploadUtils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/images/upload/img1.jpeg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/images/upload/img2.jpeg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/images/upload/img3.jpeg" beforeDir="false" />
@@ -45,16 +91,19 @@
       <change beforePath="$PROJECT_DIR$/public/images/upload/new5.jpeg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/images/upload/《人件》中文版.pdf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/images/upload/人月神话.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/upload/阿里巴巴Java开发手册终极版v1.3.0.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/upload/阿里巴巴Java开发手册终极版v1.3.0.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/public/upload/branch/Z1002003/阿里巴巴Java开发手册终极版v1.3.0.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/images/upload/风景1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/upload/branch/Z1002001/风景1.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/images/upload/风景2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/upload/branch/Z1002001/风景2.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/images/upload/风景3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/upload/branch/Z1002001/风景3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/upload/高清震撼电影短片集合1.webm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/javascripts/view/analyse.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/analyse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/analyse.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/analyse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/newsEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/newsEdit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/analyse.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/analyse.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/callBackSetting.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/callBackSetting.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/upload/高清震撼电影短片集合1.webm" beforeDir="false" afterPath="$PROJECT_DIR$/public/upload/branch/Z1002002/高清震撼电影短片集合1.webm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/javascripts/view/changePassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/changePassword.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/javascripts/view/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/javascripts/view/mediaModuleDetail4Video.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/mediaModuleDetail4Video.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/changePassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/changePassword.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/archive.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/archive.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/changePassword.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/changePassword.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/layout.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/layout.hbs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -141,7 +190,8 @@
       <workItem from="1570432142781" duration="1459000" />
       <workItem from="1570712833048" duration="1372000" />
       <workItem from="1571133732376" duration="1099000" />
-      <workItem from="1571306921481" duration="8750000" />
+      <workItem from="1571306921481" duration="9533000" />
+      <workItem from="1571819776500" duration="9200000" />
     </task>
     <task id="LOCAL-00001" summary="1. 基础框架搭建完成&#10;2. 登陆页面优化完成">
       <created>1567652158384</created>
@@ -262,7 +312,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570274139734</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="理财业务分流数据分析功能开发完成">
+      <created>1571662145177</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1571662145177</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -303,7 +360,8 @@
     <MESSAGE value="添加支行个性化设定样式" />
     <MESSAGE value="支行回呼类型管理功能开发完成" />
     <MESSAGE value="查看新闻详情需要传递银行及支行编码" />
-    <option name="LAST_COMMIT_MESSAGE" value="查看新闻详情需要传递银行及支行编码" />
+    <MESSAGE value="理财业务分流数据分析功能开发完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="理财业务分流数据分析功能开发完成" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
