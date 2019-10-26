@@ -7,7 +7,6 @@ let bodyParser = require('body-parser');
 
 const loginRouter = require('./routes/login');
 const indexRouter = require('./routes/index');
-
 const archiveRouter = require('./routes/archive');
 const archiveDetailRouter = require('./routes/archiveDetail');
 const mediaModuleRouter = require('./routes/mediaModule');
@@ -27,6 +26,7 @@ const changePassword4MediaRouter = require('./routes/changePassword4Media');
 const analyseRouter = require('./routes/analyse');
 const callBackSettingRouter = require('./routes/callBackSetting');
 const commonRouter = require('./routes/common');
+const helpRouter = require('./routes/help');
 let app = express();
 
 // view engine setup
@@ -72,6 +72,7 @@ app.use('/mediaModule', mediaModuleRouter);
 app.use('/mediaModule/edit/image', mediaModuleDetail4ImageRouter);
 app.use('/mediaModule/edit/video', mediaModuleDetail4VideoRouter);
 app.use('/common', commonRouter);
+app.use('/help', helpRouter);
 
 // app.use('/distribute', distributeRouter);
 

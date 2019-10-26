@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15c6e3b3-221d-47d7-9d8a-265b2c4aa486" name="Default Changelist" comment="指标管理添加状态修改功能">
+      <change afterPath="$PROJECT_DIR$/routes/help.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/help.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/uploadUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/common/uploadUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/apiConfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/apiConfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/images/upload/img1.jpeg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/images/upload/img2.jpeg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/images/upload/img3.jpeg" beforeDir="false" />
@@ -23,15 +24,6 @@
       <change beforePath="$PROJECT_DIR$/public/images/upload/风景2.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/images/upload/风景3.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/images/upload/高清震撼电影短片集合1.webm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/javascripts/view/archiveDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/archiveDetail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/javascripts/view/backImage.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/backImage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/javascripts/view/branchResource.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/branchResource.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/javascripts/view/logo.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/logo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/javascripts/view/mediaModuleDetail4Image.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/mediaModuleDetail4Image.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/javascripts/view/mediaModuleDetail4Video.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/mediaModuleDetail4Video.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/javascripts/view/newsEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/newsEdit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/javascripts/view/usersDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/usersDetail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/common.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/layout.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/layout.hbs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,8 +38,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="hbs" />
         <option value="JavaScript File" />
+        <option value="hbs" />
       </list>
     </option>
   </component>
@@ -123,7 +115,7 @@
       <workItem from="1571819776500" duration="9399000" />
       <workItem from="1571910573825" duration="13000" />
       <workItem from="1571926839355" duration="3120000" />
-      <workItem from="1571990883527" duration="12800000" />
+      <workItem from="1571990883527" duration="15211000" />
     </task>
     <task id="LOCAL-00001" summary="1. 基础框架搭建完成&#10;2. 登陆页面优化完成">
       <created>1567652158384</created>
@@ -258,7 +250,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571909152082</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="将所有上传功能全部改为调用API Service实现">
+      <created>1572101675712</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1572101675712</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,7 +300,8 @@
     <MESSAGE value="查看新闻详情需要传递银行及支行编码" />
     <MESSAGE value="理财业务分流数据分析功能开发完成" />
     <MESSAGE value="为大屏媒体系统&amp;档案管理系统新增密码修改功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="为大屏媒体系统&amp;档案管理系统新增密码修改功能" />
+    <MESSAGE value="将所有上传功能全部改为调用API Service实现" />
+    <option name="LAST_COMMIT_MESSAGE" value="将所有上传功能全部改为调用API Service实现" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -315,12 +315,6 @@
           <url>file://$PROJECT_DIR$/routes/archive.js</url>
           <line>31</line>
           <option name="timeStamp" value="60" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/common/uploadUtils.js</url>
-          <line>14</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="61" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
