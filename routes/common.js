@@ -1,21 +1,25 @@
 let express = require('express');
 let commonService = require('../service/commonService');
-let uploadUtils = require('../common/uploadUtils');
 let router = express.Router();
-let upload = uploadUtils.createUploadObject(['public','upload','branch']);
 
+router.get('/serviceSetting',  (req,res) => {
+  let service = new commonService.commonInvoke('branchServiceSetting');
+  let parameter = req.cookies.secmsBankCode + '/' + req.cookies.secmsBranchCode;
 
-router.post('/fileUpload',  upload.array('file', 10), function(req,res,next){
-  let uploadImageUrlArray = [];
-  req.files.forEach(function (file, index) {
-    uploadImageUrlArray.push('http://' + req.headers.host + '/upload/branch/' + req.cookies.secmsBranchCode + '/' + file.originalname)
-  });
-  //将其发回客户端
-  res.json({
-    err : false,
-    fileUrlList : uploadImageUrlArray
-  });
-  res.end();
+  service.get(parameter, function (result) {
+    if (result.err) {
+      res.json({
+        err: true,
+        msg: result.msg
+      });
+    } else {
+      res.json({
+        err: !result.content.result,
+        msg: result.content.responseMessage,
+        serviceSetting: result.content.responseData
+      });
+    }
+  })
 });
 
 module.exports = router;

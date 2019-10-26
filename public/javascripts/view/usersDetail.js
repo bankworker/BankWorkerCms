@@ -49,15 +49,32 @@ app.controller('myCtrl', function ($scope, $http) {
   };
 
   $scope.initUploadPlugins = function(){
-    uploadUtils.initUploadPlugin('#file-upload-image', '/common/fileUpload', ['png','jpg', 'jpeg'], false, function (opt,data) {
-      $scope.model.staffPhotoUrl = data.fileUrlList[0];
-      $scope.$apply();
-      $('#photo-upload-modal').modal('hide');
-    });
-    uploadUtils.initUploadPlugin('#file-upload-resume', '/common/fileUpload', ['png','jpg', 'jpeg'], false, function (opt,data) {
-      $scope.model.staffResumeUrl = data.fileUrlList[0];
-      $scope.$apply();
-      $('#resume-upload-modal').modal('hide');
+    $http.get('/common/serviceSetting').then(function successCallback (response) {
+      if(response.data.err){
+        bootbox.alert('无法获取上传地址，请稍后再试。');
+        return false;
+      }
+      if(response.data.serviceSetting === null){
+        bootbox.alert('未设置上传地址，请联系管理员设置上传地址。');
+        return false;
+      }
+      let fileServerUrl = response.data.serviceSetting.serverFileUploadUrl;
+      let bankCode = getCookie('secmsBankCode');
+      let branchCode = getCookie('secmsBranchCode');
+      let companyFileServerUrl = `${fileServerUrl}?bankCode=${bankCode}&branchCode=${branchCode}&dirName=staff`;
+
+      uploadUtils.initUploadPlugin('#file-upload-image', companyFileServerUrl, ['png','jpg', 'jpeg'], false, function (opt,data) {
+        $scope.model.staffPhotoUrl = data.fileUrlList[0];
+        $scope.$apply();
+        $('#photo-upload-modal').modal('hide');
+      });
+      uploadUtils.initUploadPlugin('#file-upload-resume', companyFileServerUrl, ['png','jpg', 'jpeg'], false, function (opt,data) {
+        $scope.model.staffResumeUrl = data.fileUrlList[0];
+        $scope.$apply();
+        $('#resume-upload-modal').modal('hide');
+      });
+    }, function errorCallback(response) {
+      bootbox.alert('网络异常，请检查网络设置');
     });
   };
 

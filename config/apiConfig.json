@@ -40,7 +40,8 @@
       "financialBusinessAnalyse": "/api/balance/businessAnalyse/financialBusinessAnalyse",
       "financialCallbackAnalyse": "/api/balance/businessAnalyse/financialCallbackAnalyse",
       "lobbyBusinessAnalyse": "/api/balance/businessAnalyse/lobbyBusinessAnalyse",
-      "lobbyCallbackAnalyse": "/api/balance/businessAnalyse/lobbyCallbackAnalyse"
+      "lobbyCallbackAnalyse": "/api/balance/businessAnalyse/lobbyCallbackAnalyse",
+      "branchServiceSetting": "/api/serviceSetting/branch"
     }
   }
 }

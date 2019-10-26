@@ -38,22 +38,50 @@ $(document).ready(function () {
   }
 
   function initUploadPlugins() {
-    uploadUtils.initUploadPlugin('#file-upload-image', '/common/fileUpload', ['png','jpg', 'jpeg','PNG','JPG', 'JPEG'], true, function (opt,data) {
-      let fileList = saveUploadFileList('I', data.fileUrlList);
-      appendImage(fileList);
-      $('#image-upload-modal').modal('hide');
-    });
+    $.ajax({
+      url: '/common/serviceSetting',
+      type: 'get',
+      success: function(response){
+        if(response.err){
+          bootbox.alert('无法获取上传地址，请稍后再试。');
+          return false;
+        }
 
-    uploadUtils.initUploadPlugin('#file-upload-video', '/common/fileUpload', ['mp4','MP4'], true, function (opt,data) {
-      let fileList = saveUploadFileList('V', data.fileUrlList);
-      appendVideo(fileList);
-      $('#video-upload-modal').modal('hide');
-    });
+        if(response.serviceSetting === null){
+          bootbox.alert('未设置上传地址，请联系管理员设置上传地址。');
+          return false;
+        }
+        let serverFileUploadUrl = response.serviceSetting.serverFileUploadUrl;
+        let customerFileUploadUrl = response.serviceSetting.customerFileUploadUrl !== '' ?
+            response.serviceSetting.customerFileUploadUrl:
+            response.serviceSetting.serverFileUploadUrl;
+        let bankCode = getCookie('secmsBankCode');
+        let branchCode = getCookie('secmsBranchCode');
 
-    uploadUtils.initUploadPlugin('#file-upload-file', '/common/fileUpload', ['pdf','PDF'], true, function (opt,data) {
-      let fileList = saveUploadFileList('F', data.fileUrlList);
-      appendFile(fileList);
-      $('#file-upload-modal').modal('hide');
+        let companyFileServerUrl = `${serverFileUploadUrl}?bankCode=${bankCode}&branchCode=${branchCode}&dirName=archive`;
+        let customerFileServerUrl = `${customerFileUploadUrl}?bankCode=${bankCode}&branchCode=${branchCode}&dirName=archive`;
+
+        uploadUtils.initUploadPlugin('#file-upload-image', companyFileServerUrl, ['png','jpg', 'jpeg','PNG','JPG', 'JPEG'], true, function (opt,data) {
+          let fileList = saveUploadFileList('I', data.fileUrlList);
+          appendImage(fileList);
+          $('#image-upload-modal').modal('hide');
+        });
+
+        uploadUtils.initUploadPlugin('#file-upload-video', companyFileServerUrl, ['mp4','MP4','webm'], true, function (opt,data) {
+          let fileList = saveUploadFileList('V', data.fileUrlList);
+          appendVideo(fileList);
+          $('#video-upload-modal').modal('hide');
+        });
+
+        uploadUtils.initUploadPlugin('#file-upload-file', customerFileServerUrl, ['pdf','PDF'], true, function (opt,data) {
+          let fileList = saveUploadFileList('F', data.fileUrlList);
+          appendFile(fileList);
+          $('#file-upload-modal').modal('hide');
+        });
+      },
+      error: function(XMLHttpRequest){
+        bootbox.alert('网络异常，请检查网络设置');
+      }
     });
   }
 
@@ -208,10 +236,6 @@ $(document).ready(function () {
       }
     });
   }
-
-  // function clearUploadStatus(){
-  //   uploadTools.isUploaded = false;
-  // }
 
   /**
    * 保存上传的文件
