@@ -15,6 +15,7 @@ function setSystemTitle() {
     $('#branchName4System').text(branchName);
   }
 }
+
 function setAuthorizedSystem() {
   let accountID = getLoginUserInfo().accountID;
   if(accountID === undefined){
@@ -161,4 +162,11 @@ function isRate(v) {
   var regu = "^0+[\.][0-9]{0,2}$";
   var re = new RegExp(regu);
   return re.test(v);
+}
+
+function buildUploadRemoteUri(serviceUrl, dirName) {
+  let systemName = 'bankWorker';
+  let bankCode = getCookie('secmsBankCode');
+  let branchCode = getCookie('secmsBranchCode');
+  return `${serviceUrl}?system=${systemName}&bankCode=${bankCode}&branchCode=${branchCode}&dirName=${dirName}`;
 }

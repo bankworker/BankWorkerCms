@@ -58,17 +58,15 @@ app.controller('myCtrl', function ($scope, $http) {
         bootbox.alert('未设置上传地址，请联系管理员设置上传地址。');
         return false;
       }
-      let fileServerUrl = response.data.serviceSetting.serverFileUploadUrl;
-      let bankCode = getCookie('secmsBankCode');
-      let branchCode = getCookie('secmsBranchCode');
-      let companyFileServerUrl = `${fileServerUrl}?bankCode=${bankCode}&branchCode=${branchCode}&dirName=staff`;
+      let uploadStaffServerUrl = buildUploadRemoteUri(response.data.serviceSetting.serverFileUploadUrl, 'staff');
+      let uploadResumeServerUrl = buildUploadRemoteUri(response.data.serviceSetting.serverFileUploadUrl, 'resume');
 
-      uploadUtils.initUploadPlugin('#file-upload-image', companyFileServerUrl, ['png','jpg', 'jpeg'], false, function (opt,data) {
+      uploadUtils.initUploadPlugin('#file-upload-image', uploadStaffServerUrl, ['png','jpg', 'jpeg'], false, function (opt,data) {
         $scope.model.staffPhotoUrl = data.fileUrlList[0];
         $scope.$apply();
         $('#photo-upload-modal').modal('hide');
       });
-      uploadUtils.initUploadPlugin('#file-upload-resume', companyFileServerUrl, ['png','jpg', 'jpeg'], false, function (opt,data) {
+      uploadUtils.initUploadPlugin('#file-upload-resume', uploadResumeServerUrl, ['png','jpg', 'jpeg'], false, function (opt,data) {
         $scope.model.staffResumeUrl = data.fileUrlList[0];
         $scope.$apply();
         $('#resume-upload-modal').modal('hide');

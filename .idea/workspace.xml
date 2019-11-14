@@ -1,30 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="15c6e3b3-221d-47d7-9d8a-265b2c4aa486" name="Default Changelist" comment="指标管理添加状态修改功能">
-      <change afterPath="$PROJECT_DIR$/routes/help.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/help.hbs" afterDir="false" />
+    <list default="true" id="15c6e3b3-221d-47d7-9d8a-265b2c4aa486" name="Default Changelist" comment="添加帮助页面">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/upload/img1.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/upload/img2.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/upload/img3.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/upload/img5.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/upload/img6.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/upload/img8.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/upload/logo-100.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/upload/new1.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/upload/new2.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/upload/new4.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/upload/new5.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/upload/《人件》中文版.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/upload/人月神话.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/upload/阿里巴巴Java开发手册终极版v1.3.0.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/upload/风景1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/upload/风景2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/upload/风景3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/upload/高清震撼电影短片集合1.webm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/layout.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/layout.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/apiConfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/apiConfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/javascripts/view/archiveDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/archiveDetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/javascripts/view/backImage.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/backImage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/javascripts/view/branchResource.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/branchResource.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/javascripts/view/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/javascripts/view/logo.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/logo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/javascripts/view/mediaModuleDetail4Image.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/mediaModuleDetail4Image.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/javascripts/view/mediaModuleDetail4Video.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/mediaModuleDetail4Video.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/javascripts/view/newsEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/newsEdit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/javascripts/view/usersDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/usersDetail.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -56,7 +44,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="10.16.0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../SimulationExperiment /SourceCode/SimulationExperimentCms" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -115,7 +103,13 @@
       <workItem from="1571819776500" duration="9399000" />
       <workItem from="1571910573825" duration="13000" />
       <workItem from="1571926839355" duration="3120000" />
-      <workItem from="1571990883527" duration="15211000" />
+      <workItem from="1571990883527" duration="15466000" />
+      <workItem from="1572421679859" duration="2867000" />
+      <workItem from="1572615366906" duration="10000" />
+      <workItem from="1572779479340" duration="13266000" />
+      <workItem from="1573034436266" duration="1448000" />
+      <workItem from="1573609196226" duration="649000" />
+      <workItem from="1573717343552" duration="5978000" />
     </task>
     <task id="LOCAL-00001" summary="1. 基础框架搭建完成&#10;2. 登陆页面优化完成">
       <created>1567652158384</created>
@@ -257,7 +251,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572101675712</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="添加帮助页面">
+      <created>1572107935430</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1572107935430</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,14 +302,15 @@
     <MESSAGE value="理财业务分流数据分析功能开发完成" />
     <MESSAGE value="为大屏媒体系统&amp;档案管理系统新增密码修改功能" />
     <MESSAGE value="将所有上传功能全部改为调用API Service实现" />
-    <option name="LAST_COMMIT_MESSAGE" value="将所有上传功能全部改为调用API Service实现" />
+    <MESSAGE value="添加帮助页面" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加帮助页面" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/public/javascripts/view/mediaModuleDetail4Image.js</url>
-          <line>153</line>
+          <line>152</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">

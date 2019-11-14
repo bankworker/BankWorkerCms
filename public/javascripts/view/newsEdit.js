@@ -28,12 +28,10 @@ app.controller('myCtrl', function ($scope, $http) {
         bootbox.alert('未设置上传地址，请联系管理员设置上传地址。');
         return false;
       }
-      let fileServerUrl = response.data.serviceSetting.serverFileUploadUrl;
-      let bankCode = getCookie('secmsBankCode');
-      let branchCode = getCookie('secmsBranchCode');
-      let companyFileServerUrl = `${fileServerUrl}?bankCode=${bankCode}&branchCode=${branchCode}&dirName=news`;
 
-      uploadUtils.initUploadPlugin('#file-upload-thumbnail', companyFileServerUrl, ['png','jpg', 'jpeg'], false, function (opt,data) {
+      let uploadServerUrl = buildUploadRemoteUri(response.data.serviceSetting.serverFileUploadUrl, 'news');
+
+      uploadUtils.initUploadPlugin('#file-upload-thumbnail', uploadServerUrl, ['png','jpg', 'jpeg'], false, function (opt,data) {
         $scope.model.newsThumbnailUrl = data.fileUrlList[0];
         $scope.$apply();
         $('#modal-newsThumbnail').modal('hide');

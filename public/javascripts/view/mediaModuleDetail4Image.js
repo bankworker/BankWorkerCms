@@ -24,11 +24,10 @@ app.controller('myCtrl', function ($scope, $http) {
         bootbox.alert('未设置上传地址，请联系管理员设置上传地址。');
         return false;
       }
-      let fileServerUrl = response.data.serviceSetting.serverFileUploadUrl;
-      let bankCode = getCookie('secmsBankCode');
-      let branchCode = getCookie('secmsBranchCode');
-      let companyFileServerUrl = `${fileServerUrl}?bankCode=${bankCode}&branchCode=${branchCode}&dirName=media`;
-      uploadUtils.initUploadPlugin('#file-upload-image', companyFileServerUrl, ['png','jpg', 'jpeg'], true, function (opt,data) {
+      let uploadImageServerUrl = buildUploadRemoteUri(response.data.serviceSetting.serverFileUploadUrl, 'mediaImage');
+      let uploadAudioServerUrl = buildUploadRemoteUri(response.data.serviceSetting.serverFileUploadUrl, 'mediaAudio');
+
+      uploadUtils.initUploadPlugin('#file-upload-image', uploadImageServerUrl, ['png','jpg', 'jpeg'], true, function (opt,data) {
         angular.forEach(data.fileUrlList, function (fileUrl) {
           $scope.model.mediaModuleImageList.push({
             mediaDetailID: 0,
@@ -40,7 +39,7 @@ app.controller('myCtrl', function ($scope, $http) {
         $('#image-upload-modal').modal('hide');
       });
 
-      uploadUtils.initUploadPlugin('#file-upload-audio', companyFileServerUrl, ['mp3'], false, function (opt,data) {
+      uploadUtils.initUploadPlugin('#file-upload-audio', uploadAudioServerUrl, ['mp3'], false, function (opt,data) {
         $scope.model.mediaModuleAudioUrl = data.fileUrlList[0];
         $scope.$apply();
         $('#audio-upload-modal').modal('hide');

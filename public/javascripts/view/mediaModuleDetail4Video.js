@@ -23,11 +23,9 @@ app.controller('myCtrl', function ($scope, $http) {
         bootbox.alert('未设置上传地址，请联系管理员设置上传地址。');
         return false;
       }
-      let fileServerUrl = response.data.serviceSetting.serverFileUploadUrl;
-      let bankCode = getCookie('secmsBankCode');
-      let branchCode = getCookie('secmsBranchCode');
-      let companyFileServerUrl = `${fileServerUrl}?bankCode=${bankCode}&branchCode=${branchCode}&dirName=media`;
-      uploadUtils.initUploadPlugin('#file-upload-video', companyFileServerUrl, ['mp4','MP4', 'webm'], false, function (opt,data) {
+      let uploadServerUrl = buildUploadRemoteUri(response.data.serviceSetting.serverFileUploadUrl, 'mediaVideo');
+
+      uploadUtils.initUploadPlugin('#file-upload-video', uploadServerUrl, ['mp4','MP4', 'webm'], false, function (opt,data) {
         $scope.model.mediaModuleVideoUrl = data.fileUrlList[0];
         $scope.$apply();
         $('#video-upload-modal').modal('hide');

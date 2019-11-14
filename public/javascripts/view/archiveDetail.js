@@ -55,11 +55,9 @@ $(document).ready(function () {
         let customerFileUploadUrl = response.serviceSetting.customerFileUploadUrl !== '' ?
             response.serviceSetting.customerFileUploadUrl:
             response.serviceSetting.serverFileUploadUrl;
-        let bankCode = getCookie('secmsBankCode');
-        let branchCode = getCookie('secmsBranchCode');
 
-        let companyFileServerUrl = `${serverFileUploadUrl}?bankCode=${bankCode}&branchCode=${branchCode}&dirName=archive`;
-        let customerFileServerUrl = `${customerFileUploadUrl}?bankCode=${bankCode}&branchCode=${branchCode}&dirName=archive`;
+        let companyFileServerUrl = buildUploadRemoteUri(serverFileUploadUrl, 'archive');
+        let customerFileServerUrl = buildUploadRemoteUri(customerFileUploadUrl, 'archive');
 
         uploadUtils.initUploadPlugin('#file-upload-image', companyFileServerUrl, ['png','jpg', 'jpeg','PNG','JPG', 'JPEG'], true, function (opt,data) {
           let fileList = saveUploadFileList('I', data.fileUrlList);

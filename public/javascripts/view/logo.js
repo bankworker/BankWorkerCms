@@ -19,10 +19,8 @@ app.controller('myCtrl', function ($scope, $http) {
         bootbox.alert('未设置上传地址，请联系管理员设置上传地址。');
         return false;
       }
-      let fileServerUrl = response.data.serviceSetting.serverFileUploadUrl;
-      let bankCode = getCookie('secmsBankCode');
-      let branchCode = getCookie('secmsBranchCode');
-      let uploadServerUrl = `${fileServerUrl}?bankCode=${bankCode}&branchCode=${branchCode}&dirName=Logo`;
+      let uploadServerUrl = buildUploadRemoteUri(response.data.serviceSetting.serverFileUploadUrl, 'logo');
+
       uploadUtils.initUploadPlugin('#file-upload-logo', uploadServerUrl, ['png','jpg', 'jpeg'], false, function (opt,data) {
         $scope.model.bankBranchLogo = data.fileUrlList[0];
         $scope.$apply();
