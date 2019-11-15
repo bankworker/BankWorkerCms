@@ -52,7 +52,7 @@ $(document).ready(function () {
           return false;
         }
         let serverFileUploadUrl = response.serviceSetting.serverFileUploadUrl;
-        let customerFileUploadUrl = response.serviceSetting.customerFileUploadUrl !== '' ?
+        let customerFileUploadUrl = response.serviceSetting.customerFileUploadUrl !== null ?
             response.serviceSetting.customerFileUploadUrl:
             response.serviceSetting.serverFileUploadUrl;
 

@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="15c6e3b3-221d-47d7-9d8a-265b2c4aa486" name="Default Changelist" comment="添加帮助页面">
+    <list default="true" id="15c6e3b3-221d-47d7-9d8a-265b2c4aa486" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/apiConfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/apiConfig.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/javascripts/view/archiveDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/archiveDetail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/javascripts/view/backImage.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/backImage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/javascripts/view/branchResource.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/branchResource.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/javascripts/view/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/javascripts/view/logo.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/logo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/javascripts/view/mediaModuleDetail4Image.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/mediaModuleDetail4Image.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/javascripts/view/mediaModuleDetail4Video.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/mediaModuleDetail4Video.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/javascripts/view/newsEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/newsEdit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/javascripts/view/usersDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/view/usersDetail.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -109,7 +100,8 @@
       <workItem from="1572779479340" duration="13266000" />
       <workItem from="1573034436266" duration="1448000" />
       <workItem from="1573609196226" duration="649000" />
-      <workItem from="1573717343552" duration="5978000" />
+      <workItem from="1573717343552" duration="6049000" />
+      <workItem from="1573776919139" duration="326000" />
     </task>
     <task id="LOCAL-00001" summary="1. 基础框架搭建完成&#10;2. 登陆页面优化完成">
       <created>1567652158384</created>
@@ -258,7 +250,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572107935430</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="调用API Service上传文件时，使用统一的方式生成上传路径">
+      <created>1573723899091</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1573723899091</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -303,7 +302,8 @@
     <MESSAGE value="为大屏媒体系统&amp;档案管理系统新增密码修改功能" />
     <MESSAGE value="将所有上传功能全部改为调用API Service实现" />
     <MESSAGE value="添加帮助页面" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加帮助页面" />
+    <MESSAGE value="调用API Service上传文件时，使用统一的方式生成上传路径" />
+    <option name="LAST_COMMIT_MESSAGE" value="调用API Service上传文件时，使用统一的方式生成上传路径" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
